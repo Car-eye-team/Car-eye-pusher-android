@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Code\sh_camera_android_stdio\SH_CAMERA\app\libs\mina-core-2.0.13.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="1fb85caac8ad0ac02355663a83722b97a3294f57">
+        <dex dex="C:\Code\sh_camera_android_stdio\SH_CAMERA\app\build\intermediates\pre-dexed\debug\mina-core-2.0.13_8b71795d2f098420e692abed38dfee1cd83f381d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Code\sh_camera_android_stdio\SH_CAMERA\app\libs\libs_launcher_0520.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="5425fdd97fdedaf1f17a90e8d6a890bd7b191a04">
+        <dex dex="C:\Code\sh_camera_android_stdio\SH_CAMERA\app\build\intermediates\pre-dexed\debug\libs_launcher_0520_8d55551a8c0ce29177f60d6ff67b05c00640f3ba.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Corey\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\20.0.0\support-annotations-20.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa">
+        <dex dex="C:\Code\sh_camera_android_stdio\SH_CAMERA\app\build\intermediates\pre-dexed\debug\support-annotations-20.0.0_3503b10e42b22f0857c2b28932e3fab22c202296.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Code\sh_camera_android_stdio\SH_CAMERA\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\jars\libs\internal_impl-20.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d">
+        <dex dex="C:\Code\sh_camera_android_stdio\SH_CAMERA\app\build\intermediates\pre-dexed\debug\internal_impl-20.0.0_29f0df1af9799fb54a62d6727b119e9ab693312c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Code\sh_camera_android_stdio\SH_CAMERA\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0">
+        <dex dex="C:\Code\sh_camera_android_stdio\SH_CAMERA\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-20.0.0_6778fb397fe920764f2baa2581737476bf03bef2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Code\sh_camera_android_stdio\SH_CAMERA\app\libs\slf4j-android-1.5.8.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="404eece4bb07ea211f5a879c22458775c612f0df">
+        <dex dex="C:\Code\sh_camera_android_stdio\SH_CAMERA\app\build\intermediates\pre-dexed\debug\slf4j-android-1.5.8_e2f795db38041814fc8d4fcb3e43ec6d4147f554.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Corey\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.2.1\d8e711ae108185c59c17b36b3c3f11b20cf9b4d5\gson-2.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="d8e711ae108185c59c17b36b3c3f11b20cf9b4d5">
+        <dex dex="C:\Code\sh_camera_android_stdio\SH_CAMERA\app\build\intermediates\pre-dexed\debug\gson-2.2.1_5092bf4672b550ea091599b3edc82cf21faf8b64.jar" />
+    </item>
+
+</items>
