@@ -5,7 +5,7 @@ Car-eye Camera 视频监控API RTSP版本：
 public native int  CarEyeInitNetWork(Context context,String serverIP, String serverPort, String streamName, int videoformat, int fps,int audioformat, int audiochannel, int audiosamplerate);  
 功能：初始化流媒体通道    
 参数：context：应用句柄server  
-IP:流媒体服务器的IP，可以是域名如www.car-eye.cn  
+IP:流媒体服务器的IP，可以是域名如www.car-eye.cn    
 serverPort:RTSP流媒体的端口号  
 streamName： 设备名：如手机号码13510671870 是设备的唯一标识   
 videoformat： 视频格式，支持H264，265 MJPEG
@@ -27,7 +27,7 @@ public native int    CarEyeStopNativeFileRTSP(int channel);
 public native int    CarEyeStartNativeFileRTSPEX(Context context, String serverIP, String serverPort, String streamName,  String fileName,int start, int end);
 功能：启动文件的推送 
 参数:context：应用句柄
-serverIP:流媒体服务器的IP，可以是域名如www.car-eye.cn   
+serverIP:流媒体服务器的IP，可以是域名如www.car-eye.cn     
 serverPort:RTSP流媒体的端口号   
 streamName： 设备名：如手机号码13510671870 是设备的唯一标识  
 fileName：文件的绝对路径      
