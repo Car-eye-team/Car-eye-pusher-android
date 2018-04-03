@@ -3,6 +3,7 @@ car-push-android 是car-eye开源团队开发的一个推送库。demo程序分�
 Car-eye Camera 视频监控API RTSP版本：
 说明:
 public native int  CarEyeInitNetWork(Context context,String serverIP, String serverPort, String streamName, int videoformat, int fps,int audioformat, int audiochannel, int audiosamplerate);  
+
 功能：初始化流媒体通道    
 参数：context：应用句柄server  
 IP:流媒体服务器的IP，可以是域名如www.car-eye.cn    
@@ -15,6 +16,7 @@ public native int 	 CarEyePusherIsReady(int channel);
 功能：判断通道是否准备好，用来开启推送1：已经准备好，0还没准备好。
 channel：通道号，
 public native long   CarEyeSendBuffer(int time, byte[] data, int lenth, int type, int channel);
+
 功能：填充流媒体数据到RTSP服务器 
 参数time: 推送时间数，毫秒单位
 data:多媒体数据   
@@ -22,9 +24,11 @@ lenth：数据长度
 type ：视频还是音频   
 channel：推送的通道号   
 public native int    CarEyeStopNativeFileRTSP(int channel);
+
 功能：结束文件的推送   
 参数:channel:通道号  
 public native int    CarEyeStartNativeFileRTSPEX(Context context, String serverIP, String serverPort, String streamName,  String fileName,int start, int end);
+
 功能：启动文件的推送 
 参数:context：应用句柄
 serverIP:流媒体服务器的IP，可以是域名如www.car-eye.cn     
