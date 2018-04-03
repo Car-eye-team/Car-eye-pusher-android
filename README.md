@@ -1,0 +1,1 @@
+car-push-android 是car-eye开源团队开发的一个推送库。demo程序分成RTSP和RTMP推送两个版本
