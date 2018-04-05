@@ -1,4 +1,4 @@
-car-push-android 是car-eye开源团队开发的一个推送库。demo程序分成RTSP和RTMP推送两个版本。是car-eye-device anddroid版的简化版本。支持实时监控和远程回放，接口跟Car-eye-device一样。更方便用户了解推送库：
+car-push-android 是car-eye开源团队开发的一个推送库。demo程序分成RTSP和RTMP推送两个版本。是car-eye-device android版的简化版本。支持实时监控和远程回放，接口跟Car-eye-device一样。更方便用户了解推送库：
 
 Car-eye Camera 视频监控API RTSP版本：
 说明:
