@@ -43,5 +43,6 @@ public void  CarEyeCallBack(int channel, int Result)
 参数:channel：通道号     
 Result:返回码，一般为结束或者错误码      
 
-
+RTMP 推送接口跟RTSP一样，只是使用的库和URL的组织格式不一样。RTSP发送的URL为：rtsp://IP(或者域名):端口/设备编号?channel=1.sdp,
+发送历史文件的URL:rtsp://IP(或者域名):端口/设备编号-channel=1.sdp. 可以使用car-eye-player或者其他的RTSP客户端进行视频播放
 car-eye车辆管理平台：www.car-eye.cn; car-eye开源平台网址：https://github.com/Car-eye-team/Car-eye-device 有关car-eye 咨询可以加QQ群590411159。
