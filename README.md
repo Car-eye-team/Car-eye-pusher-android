@@ -11,7 +11,7 @@ context：应用句柄  
 server IP:流媒体服务器的IP，可以是域名如www.car-eye.cn     
 serverPort:RTSP流媒体的端口号  
 streamName： 设备名：如手机号码13510671870 是设备的唯一标识    
-videoformat： 视频格式，支持H264，265 MJPEG 
+videoformat： 视频格式，支持H264，265 MJPEG    
 fps： 帧频率  
 audioformat： 音频格式支持AAC,G711,G726等    
 返回：通道号
@@ -22,7 +22,7 @@ audioformat： 音频格式支持AAC,G711,G726等
 channel：通道号
 返回：1 通道已经准备好 0 通道还没准备好
 
-接口原型： public native long   CarEyeSendBuffer(long time, byte[] data, int lenth, int type, int channel);
+接口原型： public native long   CarEyeSendBuffer(long time, byte[] data, int lenth, int type, int channel);   
 接口功能：填充流媒体数据到RTSP服务器 
 参数说明：   
 time: 推送时间数，毫秒单位
@@ -38,7 +38,7 @@ channel：推送的通道号
 参数说明:   
 channel:通道号  
 
-接口原型： public native int   CarEyeStartNativeFileRTSPEX(Context context, String serverIP, String serverPort, String streamName,  String fileName,int start, int end);
+接口原型： public native int   CarEyeStartNativeFileRTSPEX(Context context, String serverIP, String serverPort, String streamName,  String fileName,int start, int end);    
 
 接口功能：启动文件的推送 
 参数说明:context：应用句柄
@@ -50,7 +50,7 @@ start：推送的文件相对偏移的开始时间
 end：  推送文件的相对偏移的结束时间     
 返回：通道号（1-8） 其他为错误  
 
-接口原型   public void  CarEyeCallBack(int channel, int Result)     
+接口原型   public void  CarEyeCallBack(int channel, int Result)        
 接口功能：推送文件的callback函数      
 参数说明:  
 channel：通道号     
