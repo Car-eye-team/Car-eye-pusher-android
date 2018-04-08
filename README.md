@@ -4,7 +4,7 @@ car-push-android 是car-eye开源团队开发的一个推送库。demo程序分�
 
 ## 库接口说明
 
-接口原型： public native int  CarEyeInitNetWork(Context context,String serverIP, String serverPort, String streamName, int videoformat, int fps,int audioformat, int audiochannel, int audiosamplerate);   
+接口原型： public native int  CarEyeInitNetWork(Context context,String serverIP, String serverPort, String streamName, int videoformat, int fps,int audioformat, int audiochannel, int audiosamplerate);      
 接口功能：初始化流媒体通道  
 参数说明：   
 context：应用句柄   
@@ -38,7 +38,7 @@ channel：推送的通道号
 参数说明:   
 channel:通道号  
 
-接口原型： public native int   CarEyeStartNativeFileRTSPEX(Context context, String serverIP, String serverPort, String streamName,  String fileName,int start, int end);    
+接口原型： public native int   CarEyeStartNativeFileRTSPEX(Context context, String serverIP, String serverPort, String streamName,  String fileName,int start, int end);          
 
 接口功能：启动文件的推送 
 参数说明:context：应用句柄  
@@ -50,7 +50,7 @@ start：推送的文件相对偏移的开始时间
 end：  推送文件的相对偏移的结束时间     
 返回：通道号（1-8） 其他为错误  
 
-接口原型   public void  CarEyeCallBack(int channel, int Result)        
+接口原型   public void  CarEyeCallBack(int channel, int Result)         
 接口功能：推送文件的callback函数      
 参数说明:    
 channel：通道号     
