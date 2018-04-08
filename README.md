@@ -41,9 +41,9 @@ channel:通道号
 接口原型： public native int   CarEyeStartNativeFileRTSPEX(Context context, String serverIP, String serverPort, String streamName,  String fileName,int start, int end);    
 
 接口功能：启动文件的推送 
-参数说明:context：应用句柄
+参数说明:context：应用句柄  
 serverIP:流媒体服务器的IP，可以是域名如www.car-eye.cn     
-serverPort:RTSP流媒体的端口号   
+serverPort:RTSP流媒体的端口号      
 streamName： 设备名：如手机号码13510671870 是设备的唯一标识  
 fileName：文件的绝对路径      
 start：推送的文件相对偏移的开始时间     
