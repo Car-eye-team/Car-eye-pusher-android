@@ -8,7 +8,7 @@ car-push-android 是car-eye开源团队开发的一个推送库。demo程序分�
 接口功能：初始化流媒体通道  
 参数说明：   
 context：应用句柄   
-server IP:流媒体服务器的IP，可以是域名如www.car-eye.cn         
+server IP:流媒体服务器的IP，可以是域名如www.car-eye.cn            
 serverPort:RTSP流媒体的端口号  
 streamName： 设备名：如手机号码13510671870 是设备的唯一标识    
 videoformat： 视频格式，支持H264，265 MJPEG    
@@ -33,7 +33,7 @@ channel：推送的通道号
 返回：0 为发送数据成功  其他 为错误码
 
 
-接口原型 public native int    CarEyeStopNativeFileRTSP(int channel);
+接口原型 public native int    CarEyeStopNativeFileRTSP(int channel);   
 接口功能：结束文件的推送   
 参数说明:   
 channel:通道号  
