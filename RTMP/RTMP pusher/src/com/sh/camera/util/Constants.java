@@ -82,9 +82,8 @@ public class Constants {
 	public static final  long SD_FREEJX = 200;//清理界限、清理目标达到极限 5M 
 	/**是否正在清理sd内存*/
 	public static  boolean isCleaning = false;
-	public static  boolean AudioRecord = false;
+	public static  boolean AudioRecord = true;
 	public static  final boolean ExtPlayer = false;
-	public static  boolean GPS_SUPPORT = false;
 	/**帧速率*/
 	public static int FRAMERATE = 20;
 	/**摄像头ID*/

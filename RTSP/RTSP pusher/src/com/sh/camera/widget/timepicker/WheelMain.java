@@ -3,7 +3,7 @@ package com.sh.camera.widget.timepicker;
 import java.util.Arrays;
 import java.util.List;
 
-import com.sh.camera.R;
+import com.sh.RTSP_Pusher.R;
 
 import android.view.View;
 

@@ -62,8 +62,8 @@ public class AudioStream {
             -1, // 15
     };
 
-    public AudioStream(Pusher easyPusher, Muxer muxer, int index) {
-        this.easyPusher = easyPusher;
+    public AudioStream(Pusher m_Pusher, Muxer muxer, int index) {
+        this.easyPusher = m_Pusher;
         this.muxer = muxer;
         m_index = index;
         int i = 0;
@@ -104,7 +104,7 @@ public class AudioStream {
 
                     ByteBuffer mBuffer = ByteBuffer.allocate(10240);
                     while (mThread != null) {
-                        bufferIndex = mMediaCodec.dequeueInputBuffer(1000);
+                        bufferIndex = mMediaCodec.dequeueInputBuffer(3000);
                         if (bufferIndex >= 0) {
                             inputBuffers[bufferIndex].clear();
                             len = mAudioRecord.read(inputBuffers[bufferIndex], BUFFER_SIZE);
@@ -130,8 +130,7 @@ public class AudioStream {
                                 mBuffer.position(7 + mBufferInfo.size);
                                 addADTStoPacket(mBuffer.array(), mBufferInfo.size + 7);
                                 mBuffer.flip();
-                               //easyPusher.push(mBuffer.array(), 0, mBufferInfo.size + 7, mBufferInfo.presentationTimeUs / 1000, 0);
-                               // easyPusher.SendBuffer(mBufferInfo.presentationTimeUs / 1000, mBuffer.array(),  mBufferInfo.size + 7, 0, m_index);	                                            
+                                easyPusher.SendBuffer_org(mBuffer.array(), mBufferInfo.size + 7, mBufferInfo.presentationTimeUs / 1000, 1, m_index);	                                            
 	                            mMediaCodec.releaseOutputBuffer(index, false);
 	                            break;
 	                            
