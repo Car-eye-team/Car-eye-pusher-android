@@ -46,7 +46,7 @@ import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.sh.camera.R;
+import com.sh.RTMP_Pusher.R;
 import com.sh.camera.util.Constants;
 import com.sh.camera.util.MyToast;
 import com.sh.camera.util.ToastUtil;

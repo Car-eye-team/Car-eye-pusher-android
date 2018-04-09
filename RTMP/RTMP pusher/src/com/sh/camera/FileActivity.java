@@ -39,6 +39,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sh.RTMP_Pusher.R;
 import com.sh.camera.service.MainService;
 import com.sh.camera.util.CameraUtil;
 import com.sh.camera.util.Constants;

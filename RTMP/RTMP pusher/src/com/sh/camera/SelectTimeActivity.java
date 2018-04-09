@@ -20,6 +20,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.sh.RTMP_Pusher.R;
 import com.sh.camera.util.DateUtil;
 import com.sh.camera.util.ToastUtil;
 import com.sh.camera.widget.timepicker.ScreenInfo;

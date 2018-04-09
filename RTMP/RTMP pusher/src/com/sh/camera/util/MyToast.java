@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sh.camera.R;
+import com.sh.RTMP_Pusher.R;
 
 
 

@@ -22,7 +22,7 @@ package com.sh.camera.widget.timepicker;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.sh.camera.R;
+import com.sh.RTMP_Pusher.R;
 
 import android.content.Context;
 import android.graphics.Canvas;

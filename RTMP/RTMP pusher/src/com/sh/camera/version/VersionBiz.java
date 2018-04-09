@@ -20,7 +20,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
-import com.sh.camera.R;
+import com.sh.RTMP_Pusher.R;
 import com.sh.camera.SetActivity;
 import com.sh.camera.bll.ParamsBiz;
 import com.sh.camera.util.Constants;

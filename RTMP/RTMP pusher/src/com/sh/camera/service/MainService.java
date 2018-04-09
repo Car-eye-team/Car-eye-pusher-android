@@ -20,6 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Matrix;
 import android.graphics.PixelFormat;
 import android.graphics.SurfaceTexture;
@@ -55,7 +56,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.sh.camera.FileActivity;
-import com.sh.camera.R;
+import com.sh.RTMP_Pusher.R;
 import com.sh.camera.SessionLinearLayout;
 import com.sh.camera.SetActivity;
 import com.sh.camera.DiskManager.DiskManager;
@@ -118,6 +119,7 @@ public class MainService extends Service {
 	int bitrate;
 	public static DiskManager disk;	
 	public static Pusher mPusher;	
+	
 	//通知结束录像
 	public static String STOPRECORDER = "stoprecorder";
 	//通知结束上传
@@ -126,6 +128,7 @@ public class MainService extends Service {
 	boolean usbcameraConnect = true;
 	boolean sd_inject = false;	
 	// 获取本地application的对象
+	private boolean isTabletDevice = true;
 	public static MainService getInstance() {
 		if (instance == null) {
 			instance = new MainService();
@@ -140,6 +143,7 @@ public class MainService extends Service {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		isTabletDevice = isTabletDevice(this);
 		instance = this;
 		c = MainService.this;
 		application = getApplicationContext();
@@ -507,9 +511,19 @@ public class MainService extends Service {
 		stHolder = new SurfaceTexture[Constants.MAX_NUM_OF_CAMERAS];		
 		preview = new PreviewCallback[Constants.MAX_NUM_OF_CAMERAS];	
 		stListener = new SurfaceTextureListener[Constants.MAX_NUM_OF_CAMERAS];
-		ly_bts = (LinearLayout) view.findViewById(R.id.main_right_btly);
-		btiv1 = (ImageView) view.findViewById(R.id.imageView1);
-		btiv2 = (ImageView) view.findViewById(R.id.imageView2);
+		if(isTabletDevice){
+			ly_bts = (LinearLayout) view.findViewById(R.id.main_right_btly);
+		}else{
+			ly_bts = (LinearLayout) view.findViewById(R.id.main_bottom_btly);
+		}
+		ly_bts.setVisibility(View.VISIBLE);
+		if(isTabletDevice){
+			btiv1 = (ImageView) view.findViewById(R.id.imageView1);
+			btiv2 = (ImageView) view.findViewById(R.id.imageView2);
+		}else{
+			btiv1 = (ImageView) view.findViewById(R.id.imageView1_bottom);
+			btiv2 = (ImageView) view.findViewById(R.id.imageView2_bottom);
+		}
 		//预览回调
 		preview[0] = new PreviewCallback() {
 
@@ -705,7 +719,8 @@ public class MainService extends Service {
 	public void click(int id){
 		if(clickLock) return;
 		switch (id) {
-		case R.id.bt_ly_1://拍照			
+		case R.id.bt_ly_1://拍照	
+		case R.id.bt_ly_1_bottom://拍照				
 			//检查SD卡是否存在
 			//if(!SdCardUtil.checkSdCardUtil()){			
 			if(disk.getDiskCnt()<=0){
@@ -717,6 +732,7 @@ public class MainService extends Service {
 			}			
 			break;
 		case R.id.bt_ly_2://录像
+		case R.id.bt_ly_2_bottom://录像
 			if(disk.getDiskCnt()<=0){
 				Toast.makeText(c, "未检测到SD卡,将无法执行操作", 1000).show();
 			}else{
@@ -739,6 +755,7 @@ public class MainService extends Service {
 			}
 			break;
 		case R.id.bt_ly_3://上传
+		case R.id.bt_ly_3_bottom://上传
 			clickLock = true;
 			if(isSC){
 				stopSC();
@@ -751,18 +768,21 @@ public class MainService extends Service {
 			clickLock = false;
 			break;
 		case R.id.bt_ly_4://回放
+		case R.id.bt_ly_4_bottom://回放
 			setWindowMin();
 			Intent intent_file = new Intent(c, FileActivity.class);
 			intent_file.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent_file);
 			break;
 		case R.id.bt_ly_5://设置
+		case R.id.bt_ly_5_bottom://设置
 			setWindowMin();
 			Intent intent_set = new Intent(c, SetActivity.class);
 			intent_set.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent_set);
 			break;
 		case R.id.bt_ly_6://退出
+		case R.id.bt_ly_6_bottom://退出
 			setWindowMin();
 			break;
 		}
@@ -784,21 +804,36 @@ public class MainService extends Service {
 	{
 		camera.setPreviewCallback(preview[index]);	
 	}	
-
-	public void startVideoUpload2(String ipstr, String portstr, String serialno,  int index){
-		int CameraId;
-		CameraId = index+1;	
+	int m_index_channel;
+	public void startVideoUpload2(final String ipstr,final String portstr, final String serialno, final int index){
+		final int CameraId;
+		CameraId = index+1;			
 		if(camera[index]==null) {				
 			return;			
 		}		
 		try {
-			CameraUtil.VIDEO_UPLOAD[index] = true;
+			
 			if(camera[index]!=null){
+				
+				AsyncTask.execute(new Runnable() {
+					@Override
+					public void run() {	      
 				//初始化推流工具
-				StreamIndex[index]= mPusher.CarEyeInitNetWork( getApplicationContext(),ipstr, portstr, String.format("live/%s?channel=%d", serialno,CameraId), Constants.CAREYE_VCODE_H264,20,Constants.CAREYE_ACODE_AAC,1,8000);
+						m_index_channel = mPusher.CarEyeInitNetWork( getApplicationContext(),ipstr, portstr, String.format("live/%s?channel=%d", serialno,CameraId), Constants.CAREYE_VCODE_H264,20,Constants.CAREYE_ACODE_AAC,1,8000);
 				//控制预览回调
-				camera[index].setPreviewCallback(preview[index]);	
-				MediaCodecManager.getInstance().StartUpload(index,camera[index]);									
+						if(m_index_channel < 0)
+						{
+							Log.d("CMD", " init error, error number"+m_index_channel);
+							return;
+						}
+						CameraUtil.VIDEO_UPLOAD[index] = true;
+						StreamIndex[index] = m_index_channel;
+						camera[index].setPreviewCallback(preview[index]);	
+						MediaCodecManager.getInstance().StartUpload(index,camera[index]);						
+					}
+				});
+				
+													
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -997,5 +1032,14 @@ public class MainService extends Service {
 			}
 
 		}
+	}
+	/**
+	 * 判断是否平板设备
+	 * @param context
+	 * @return true:平板,false:手机
+	 */
+	private boolean isTabletDevice(Context context) {
+		return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >=
+				Configuration.SCREENLAYOUT_SIZE_LARGE;
 	}
 }

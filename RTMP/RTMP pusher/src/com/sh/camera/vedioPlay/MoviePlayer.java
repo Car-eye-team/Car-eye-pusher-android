@@ -9,7 +9,7 @@ package com.sh.camera.vedioPlay;
 
 import java.util.ArrayList;
 
-import com.sh.camera.R;
+import com.sh.RTMP_Pusher.R;
 
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;

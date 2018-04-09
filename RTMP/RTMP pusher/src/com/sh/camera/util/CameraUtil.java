@@ -60,7 +60,6 @@ public class CameraUtil {
 	 * @param i 通道
 	 */
 
-
 	public static void startVideoUpload2(final String ipstr, final String portstr, final String serialno,  int CameraId){
 
 		final int i = CameraId -1;

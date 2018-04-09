@@ -21,6 +21,7 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 
+import com.sh.RTMP_Pusher.R;
 import com.sh.camera.ServerManager.ServerManager;
 import com.sh.camera.service.MainService;
 import com.sh.camera.util.Constants;
