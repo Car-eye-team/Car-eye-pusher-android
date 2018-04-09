@@ -26,6 +26,8 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.sh.camera.ServerManager.ServerManager;
 import com.sh.camera.service.MainService;
 
@@ -174,6 +176,11 @@ public class CameraUtil {
 			final String ip = sp.getString("ip",Constants.SERVER_IP);
 			final String port = sp.getString("port",Constants.SERVER_PORT);
 			final String streamname = sp.getString("name",Constants.STREAM_NAME);
+			if(streamname.equals(Constants.STREAM_NAME))
+			{
+				Toast.makeText(MainService.getInstance(), "请修改设备名", 1000).show();
+			}
+			
 			final String streamName =  String.format("%s-channel=%d.sdp", streamname,cameraid);
 
 			Log.d("CMD", " filePath upload"+filename);

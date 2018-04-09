@@ -814,7 +814,11 @@ public class MainService extends Service {
 		CameraId = index+1;	
 		if(camera[index]==null) {				
 			return;			
-		}		
+		}	
+		if(serialno.equals(Constants.STREAM_NAME))
+		{
+			Toast.makeText(MainService.getInstance(), "请修改设备名", 1000).show();
+		}
 		try {
 			CameraUtil.VIDEO_UPLOAD[index] = true;
 			if(camera[index]!=null){
