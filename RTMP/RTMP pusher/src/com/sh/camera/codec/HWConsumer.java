@@ -66,7 +66,7 @@ public class HWConsumer extends Thread implements VideoConsumer {
     @Override
     public int onVideo(byte[] data, int format) {
         if (!mVideoStarted)return 0;
-        if(mPusher.CarEyePusherIsReady(m_index)==0)
+        if(mPusher.CarEyePusherIsReadyRTMP(m_index)==0)
         {
         	Log.d("CMD", " onVideo not ready ");	
         	return 0;

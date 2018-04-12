@@ -34,11 +34,11 @@ public class Pusher {
 	private ByteBuffer directbuffer;
 	
 	private Handler handle =null;	
-	public native int    CarEyeInitNetWork(Context context,String serverIP, String serverPort, String streamName, int videoformat, int fps,int audioformat, int audiochannel, int audiosamplerate);
-	public native int 	 CarEyePusherIsReady(int channel);
-	public native long   CarEyeSendBuffer(long time, byte[] data, int lenth, int type, int channel);	
-	public native int    CarEyeStopNativeFileRTSP(int channel);	
-	public native int    CarEyeStartNativeFileRTSPEX(Context context, String serverIP, String serverPort, String streamName,  String fileName,int start, int end);
+	public native int    CarEyeInitNetWorkRTMP(Context context,String serverIP, String serverPort, String streamName, int videoformat, int fps,int audioformat, int audiochannel, int audiosamplerate);
+	public native int 	 CarEyePusherIsReadyRTMP(int channel);
+	public native long   CarEyeSendBufferRTMP(long time, byte[] data, int lenth, int type, int channel);	
+	public native int    CarEyeStopNativeFileRTMP(int channel);	
+	public native int    CarEyeStartNativeFileRTMPEX(Context context, String serverIP, String serverPort, String streamName,  String fileName,int start, int end);
 
 	// result： 0 文件传输结束  , 传输出错
 	
@@ -66,13 +66,13 @@ public class Pusher {
 	 * 停止发送
 	 * @param index
 	 */
-	public native void  CarEyeStopPushNet(int index);   
+	public native void  CarEyeStopPushNetRTMP(int index);   
 	
 	public  long SendBuffer_org(final byte[] data,final int length, final long timestamp, final int type, final int index)
 	{
 		long ret;
 		//Log.e("puser", "timestamp:"+timestamp+"length:"+length);	
-		ret =  CarEyeSendBuffer(timestamp, data,length,type,index);		
+		ret =  CarEyeSendBufferRTMP(timestamp, data,length,type,index);		
 		return ret;
 		
 	}	
@@ -81,7 +81,7 @@ public class Pusher {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				 CarEyeStopPushNet(index);
+				 CarEyeStopPushNetRTMP(index);
 			}
 		}).start();
 	}
@@ -104,13 +104,13 @@ public class Pusher {
 
 		//StartNativeFileRTSP(serverIP,serverPort,streamName, fileName);
 		handle = handler;
-		int channel =  CarEyeStartNativeFileRTSPEX(MainService.application, serverIP,serverPort,streamName, fileName,splaysec,eplaysec);
+		int channel =  CarEyeStartNativeFileRTMPEX(MainService.application, serverIP,serverPort,streamName, fileName,splaysec,eplaysec);
 		return channel;				
 				
 	}
 	public void startfilestream(final String serverIP, final String serverPort, final String streamName, final String filePath){
 
-		CarEyeStartNativeFileRTSPEX(MainService.application,serverIP,serverPort,streamName, filePath,0,0);
+		CarEyeStartNativeFileRTMPEX(MainService.application,serverIP,serverPort,streamName, filePath,0,0);
 		Log.e("puser", "exit send file!");
 		//CameraUtil.stopVideoFileStream();
 	}

@@ -247,7 +247,7 @@ public class CameraUtil {
 					}
 					for(int i = 0; i <4; i++)
 					{
-						MainService.mPusher. CarEyeStopNativeFileRTSP(i);
+						MainService.mPusher. CarEyeStopNativeFileRTMP(i);
 					}					
 				} catch (Exception e) {
 					// TODO: handle exception

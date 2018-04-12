@@ -821,7 +821,7 @@ public class MainService extends Service {
 					@Override
 					public void run() {	      
 				//初始化推流工具
-						m_index_channel = mPusher.CarEyeInitNetWork( getApplicationContext(),ipstr, portstr, String.format("live/%s?channel=%d", serialno,CameraId), Constants.CAREYE_VCODE_H264,20,Constants.CAREYE_ACODE_AAC,1,8000);
+						m_index_channel = mPusher.CarEyeInitNetWorkRTMP( getApplicationContext(),ipstr, portstr, String.format("live/%s?channel=%d", serialno,CameraId), Constants.CAREYE_VCODE_H264,20,Constants.CAREYE_ACODE_AAC,1,8000);
 				//控制预览回调
 						if(m_index_channel < 0)
 						{
