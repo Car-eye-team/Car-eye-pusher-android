@@ -646,10 +646,8 @@ public class MainService extends Service {
 		if(MainService.getDiskManager().getDiskCnt()<=0){
 			AppLog.d("CMD", "SD卡不存在");
 			return ;
-		}
-		
+		}		
 		MediaCodecManager.CAMERA_OPER_MODE = type;
-
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
