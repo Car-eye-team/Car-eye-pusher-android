@@ -248,6 +248,7 @@ public class MainService extends Service {
 		unregisterReceiver(SYSBr);
 		//取消监听
 		Log.d("main service", "onDestroy");
+		System.exit(0);
 	};
 
 	
@@ -1044,4 +1045,5 @@ public class MainService extends Service {
 		return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >=
 				Configuration.SCREENLAYOUT_SIZE_LARGE;
 	}
+
 }
