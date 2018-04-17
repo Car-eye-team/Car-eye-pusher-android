@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bt_down">#292929</color>
+    <color name="bt_up">#1a1a1a</color>
+    <color name="bt_up2">#000000</color>
+    <color name="colorlinehuicc">#cccccc</color>
+    <color name="main_bg">#0068B7</color>
+    <color name="white">#FFFFFF</color>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <string name="action_settings">Settings</string>
+    <string name="app_name">car-eye-rtmp</string>
+    <string name="hello_world">Hello world!</string>
+    <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/check_btn</item>
+    </style>
+    <style name="CustomRadioBtn">
+        <item name="android:background">@drawable/kongbai</item>
+        <item name="android:button">@drawable/radio_btn</item>
+    </style>
+    <style name="StyleProgressBarMini" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:maxHeight">50dip</item>
+        <item name="android:minHeight">10dip</item>
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:indeterminateDrawable">@android:drawable/progress_indeterminate_horizontal</item>
+        <item name="android:progressDrawable">@drawable/shape_progressbar_mini</item>
+    </style>
+</resources>
