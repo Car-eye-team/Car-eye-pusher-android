@@ -130,7 +130,6 @@ public class Constants {
 			e.printStackTrace();
 		}
 	}
-
 	/**应用启动自动检测一次版本信息*/
 	public static boolean checkVersion = true;
 }

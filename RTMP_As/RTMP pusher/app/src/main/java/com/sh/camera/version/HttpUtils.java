@@ -29,7 +29,6 @@ import org.apache.http.protocol.HTTP;
 public class HttpUtils {
 	public static final int METHOD_GET = 1;
 	public static final int METHOD_POST = 2;
-
 	/**
 	 * 向指定的资源路径发送请求获取响应实体对象并返回
 	 * 

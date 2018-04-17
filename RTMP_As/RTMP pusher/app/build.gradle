@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 20
+    compileSdkVersion 26
     buildToolsVersion "27.0.3"
-
+    useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.sh.RTMP_Pusher"
         minSdkVersion 16
-        targetSdkVersion 21
+        targetSdkVersion 26
     }
 
     buildTypes {
