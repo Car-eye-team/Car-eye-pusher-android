@@ -1,0 +1,198 @@
+{
+    "logs": [
+        {
+            "outputFile": "G:\\ASworkSpace\\vlctest\\Android-RTSP-master\\RTMP pusher\\app\\build\\intermediates\\res\\merged\\debug\\values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "G:\\ASworkSpace\\vlctest\\Android-RTSP-master\\RTMP pusher\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "7,2,12",
+                        "startColumns": "4,4,0",
+                        "startOffsets": "200,19,389",
+                        "endLines": "11,5,18",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "387,192,857"
+                    },
+                    "to": {
+                        "startLines": "13,16,20",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "579,749,924",
+                        "endLines": "15,19,26",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "744,919,1386"
+                    }
+                },
+                {
+                    "source": "G:\\ASworkSpace\\vlctest\\Android-RTSP-master\\RTMP pusher\\app\\src\\main\\res\\values\\colors.xml",
+                    "from": {
+                        "startLines": "5,3,4,7,8,6",
+                        "startColumns": "4,4,4,6,1,4",
+                        "startOffsets": "146,63,104,232,279,189",
+                        "endColumns": "41,39,40,50,38,39",
+                        "endOffsets": "183,98,140,276,316,224"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,97,137,178,227,269",
+                        "endColumns": "41,39,40,48,41,39",
+                        "endOffsets": "92,132,173,222,264,304"
+                    }
+                },
+                {
+                    "source": "G:\\ASworkSpace\\vlctest\\Android-RTSP-master\\RTMP pusher\\app\\src\\main\\res\\values\\dimens.xml",
+                    "from": {
+                        "startLines": "3,4",
+                        "startColumns": "4,4",
+                        "startOffsets": "92,151",
+                        "endColumns": "57,55",
+                        "endOffsets": "145,202"
+                    },
+                    "to": {
+                        "startLines": "8,9",
+                        "startColumns": "4,4",
+                        "startOffsets": "309,367",
+                        "endColumns": "57,55",
+                        "endOffsets": "362,418"
+                    }
+                },
+                {
+                    "source": "G:\\ASworkSpace\\vlctest\\Android-RTSP-master\\RTMP pusher\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "5,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "163,58,109",
+                        "endColumns": "52,49,52",
+                        "endOffsets": "211,103,157"
+                    },
+                    "to": {
+                        "startLines": "10,11,12",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "423,476,526",
+                        "endColumns": "52,49,52",
+                        "endOffsets": "471,521,574"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "G:\\ASworkSpace\\vlctest\\Android-RTSP-master\\RTMP pusher\\app\\build\\intermediates\\res\\merged\\debug\\values-w820dp-v13_values-w820dp-v13.arsc.flat",
+            "map": [
+                {
+                    "source": "G:\\ASworkSpace\\vlctest\\Android-RTSP-master\\RTMP pusher\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "from": {
+                        "startLines": "7",
+                        "startColumns": "4",
+                        "startOffsets": "310",
+                        "endColumns": "57",
+                        "endOffsets": "363"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "57",
+                        "endOffsets": "108"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "G:\\ASworkSpace\\rtmpnew\\RTMP pusher\\app\\build\\intermediates\\res\\merged\\debug\\values-w820dp-v13_values-w820dp-v13.arsc.flat",
+            "map": [
+                {
+                    "source": "G:\\ASworkSpace\\rtmpnew\\RTMP pusher\\app\\src\\main\\res\\values-w820dp\\dimens.xml",
+                    "from": {
+                        "startLines": "7",
+                        "startColumns": "4",
+                        "startOffsets": "310",
+                        "endColumns": "57",
+                        "endOffsets": "363"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "57",
+                        "endOffsets": "108"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "G:\\ASworkSpace\\rtmpnew\\RTMP pusher\\app\\build\\intermediates\\res\\merged\\debug\\values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "G:\\ASworkSpace\\rtmpnew\\RTMP pusher\\app\\src\\main\\res\\values\\dimens.xml",
+                    "from": {
+                        "startLines": "3,4",
+                        "startColumns": "4,4",
+                        "startOffsets": "92,151",
+                        "endColumns": "57,55",
+                        "endOffsets": "145,202"
+                    },
+                    "to": {
+                        "startLines": "8,9",
+                        "startColumns": "4,4",
+                        "startOffsets": "309,367",
+                        "endColumns": "57,55",
+                        "endOffsets": "362,418"
+                    }
+                },
+                {
+                    "source": "G:\\ASworkSpace\\rtmpnew\\RTMP pusher\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "5,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "163,58,109",
+                        "endColumns": "52,49,52",
+                        "endOffsets": "211,103,157"
+                    },
+                    "to": {
+                        "startLines": "10,11,12",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "423,476,526",
+                        "endColumns": "52,49,52",
+                        "endOffsets": "471,521,574"
+                    }
+                },
+                {
+                    "source": "G:\\ASworkSpace\\rtmpnew\\RTMP pusher\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "7,2,12",
+                        "startColumns": "4,4,0",
+                        "startOffsets": "200,19,389",
+                        "endLines": "11,5,18",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "387,192,857"
+                    },
+                    "to": {
+                        "startLines": "13,16,20",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "579,749,924",
+                        "endLines": "15,19,26",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "744,919,1386"
+                    }
+                },
+                {
+                    "source": "G:\\ASworkSpace\\rtmpnew\\RTMP pusher\\app\\src\\main\\res\\values\\colors.xml",
+                    "from": {
+                        "startLines": "5,3,4,7,8,6",
+                        "startColumns": "4,4,4,6,1,4",
+                        "startOffsets": "146,63,104,232,279,189",
+                        "endColumns": "41,39,40,50,38,39",
+                        "endOffsets": "183,98,140,276,316,224"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,97,137,178,227,269",
+                        "endColumns": "41,39,40,48,41,39",
+                        "endOffsets": "92,132,173,222,264,304"
+                    }
+                }
+            ]
+        }
+    ]
+}
