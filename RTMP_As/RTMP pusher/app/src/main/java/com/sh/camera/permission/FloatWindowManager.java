@@ -44,7 +44,7 @@ public class FloatWindowManager {
     private WindowManager.LayoutParams mParams = null;
 
     private Dialog dialog;
-
+    private boolean flag;
     public static FloatWindowManager getInstance() {
         if (instance == null) {
             synchronized (FloatWindowManager.class) {
@@ -55,31 +55,37 @@ public class FloatWindowManager {
         }
         return instance;
     }
-    private MyListener myListener;
+    private MyListener myListener1;
     public interface MyListener {
         //通过抽象方法的参数传递数据的
         void getData(boolean res);
     }
     //回调方法
     public void setOnListener(MyListener myListener) {
-        this.myListener = myListener;
+        this.myListener1 = myListener;
     }
     public void applyOrShowFloatWindow(Context context) {
         if (checkPermission(context)) {
-        //  showWindow(context);
-            Log.e("TAG","1");
-            if (myListener==null)
+            if (myListener1==null)
             {
+               flag=false;
 
-                return;
+            }else
+            {
+                flag=true;
             }
-            myListener.getData(true);
+            myListener1.getData(flag);
         } else {
-            Log.e("TAG","2");
             applyPermission(context);
         }
     }
 
+    public boolean CheckPer(Context context) {
+        if (checkPermission(context)) {
+     return true;
+        }
+        return false;
+    }
 
 
     private boolean checkPermission(Context context) {
@@ -154,6 +160,7 @@ public class FloatWindowManager {
             }
         }
         commonROMPermissionApply(context);
+
     }
 
     private void ROM360PermissionApply(final Context context) {

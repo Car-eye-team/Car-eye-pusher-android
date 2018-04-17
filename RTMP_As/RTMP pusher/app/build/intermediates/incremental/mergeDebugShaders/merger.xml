@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="G:\ASworkSpace\vlctest\Android-RTSP-master\RTMP pusher\app\src\main\shaders"/></dataSet><dataSet config="debug"><source path="G:\ASworkSpace\vlctest\Android-RTSP-master\RTMP pusher\app\src\debug\shaders"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="F:\2018CarEyeSystem\Car-eye-pusher-android\RTMP_As\RTMP pusher\app\src\main\shaders"/></dataSet><dataSet config="debug"><source path="F:\2018CarEyeSystem\Car-eye-pusher-android\RTMP_As\RTMP pusher\app\src\debug\shaders"/></dataSet></merger>

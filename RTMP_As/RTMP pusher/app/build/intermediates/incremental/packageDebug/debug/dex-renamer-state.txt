@@ -1,4 +1,4 @@
-#Tue Apr 17 11:26:54 CST 2018
-base.0=G\:\\ASworkSpace\\vlctest\\Android-RTSP-master\\RTMP pusher\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+#Tue Apr 17 17:32:19 CST 2018
+base.0=F\:\\2018CarEyeSystem\\Car-eye-pusher-android\\RTMP_As\\RTMP pusher\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 path.0=classes.dex
 renamed.0=classes.dex
