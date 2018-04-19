@@ -67,9 +67,9 @@ RTMP 推送接口跟RTSP一样，只是使用的库和URL的组织格式不一�
 请开手机的启悬浮窗权限
 
 
-# 联系我们car-eye    
+# 联系我们     
 
-开源官方网址：www.car-eye.cn       
+car-eye开源官方网址：www.car-eye.cn       
 
 car-eye 流媒体平台网址：www.liveoss.com    
 
