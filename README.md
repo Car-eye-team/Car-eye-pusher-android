@@ -58,9 +58,9 @@ Result:返回码，一般为结束或者错误码
 
 
 ## 其他说明
-RTMP 推送接口跟RTSP一样，只是使用的库和URL的组织格式不一样。RTSP发送的URL为：rtsp://IP(或者域名):端口/设备编号?channel=1.sdp,
-发送历史文件的URL:rtsp://IP(或者域名):端口/设备编号-channel=1.sdp. RTMP实时播放地址是rtmp://IP(或者域名):端口/live/设备编号?channel=1,
-发送历史文件的URL:rtmp://IP(或者域名):端口/live/设备编号-channel=1 ,可以使用car-eye-player或者其他的RTSP客户端进行视频播放. 
+如果不输入URL地址，那么程序将用默认的服务器地址推送数据流。RTSP发送的URL为：rtsp://IP(或者域名):端口/设备编号?channel=1.sdp,
+RTMP实时播放地址是rtmp://IP(或者域名):端口/live/设备编号?channel=1,可以使用car-eye-player或者其他的RTSP客户端进行视频播放. 
+
 
 ## 特别注意
 
