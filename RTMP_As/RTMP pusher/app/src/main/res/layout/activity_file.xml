@@ -117,37 +117,15 @@
                 android:textColor="#338fcc" />
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_weight="0.7"
-                android:background="#262626"
-                android:gravity="center"
-                android:text="来源"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#cccccc" />
-
-            <TextView
                 android:id="@+id/huifang_tv_1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/bt_click"
                 android:gravity="center"
-                android:text="全部"
+                android:text="来源"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#338fcc" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_weight="0.7"
-                android:background="#262626"
-                android:gravity="center"
-                android:text="类型"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="#cccccc" />
 
             <TextView
                 android:id="@+id/huifang_tv_2"
@@ -156,7 +134,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/bt_click"
                 android:gravity="center"
-                android:text="全部"
+                android:text="类型"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#338fcc" />
         </LinearLayout>

@@ -11,6 +11,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -29,7 +32,7 @@ import com.sh.camera.version.VersionBiz;
 
 public class SetActivity extends Activity {
 
-	EditText et1,et2,et3,et4;
+	EditText et1,et2,et3,et4,et5,et6;
 	//,et_editTextkzport;
 	Button bt1,bt2;
 	//CheckBox[] cbs;
@@ -58,12 +61,12 @@ public class SetActivity extends Activity {
 		//et_editTextkzport = (EditText) findViewById(R.id.et_editTextkzport);
 		et3 = (EditText) findViewById(R.id.set_editText3);
 		et4 = (EditText) findViewById(R.id.set_editText4);
+
 		bt1 = (Button) findViewById(R.id.set_button1);
 		bt2 = (Button) findViewById(R.id.set_button2);
 		//rg = (RadioGroup) findViewById(R.id.radioGroup1);
-
-
-
+		et5 = (EditText) findViewById(R.id.set_editText5);
+		et6 = (EditText) findViewById(R.id.set_editText6);
 		/*cbs = new CheckBox[4];
 		for (int i = 0; i < cbs.length; i++) {
 			cbs[i] = (CheckBox) findViewById(cbids[i]);
@@ -71,14 +74,72 @@ public class SetActivity extends Activity {
 
 		sp = getSharedPreferences("fcoltest", MODE_PRIVATE);
 		sped = sp.edit();
-
 		//rg.check(ServerManager.getInstance().getMode());
 		et1.setText(ServerManager.getInstance().getIp());
 		et2.setText(ServerManager.getInstance().getPort());
 		et3.setText(ServerManager.getInstance().getStreamname());
-		//et_editTextkzport.setText(ServerManager.getInstance().getAddport());
-		//et4.setText(ServerManager.getInstance().getFramerate());
 		et4.setText(sp.getString(Constants.fps, String.valueOf(Constants.FRAMERATE)));
+		et5.setText(ServerManager.getInstance().getURL());
+		et6.setText(ServerManager.getInstance().getapp());
+		et1.addTextChangedListener(new TextWatcher()
+		{
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+			}
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+			}
+			@Override
+			public void afterTextChanged(Editable editable) {
+				Log.d("CMD", "afterTextChanged 被执行---->" + editable);
+				et5.setText("rtmp://"+editable+":"+et2.getText()+"/"+et6.getText()+"/"+et3.getText()+"?channel=1.sdp");
+			}
+		});
+		et2.addTextChangedListener(new TextWatcher()
+		{
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+			}
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+			}
+			@Override
+			public void afterTextChanged(Editable editable) {
+				Log.d("CMD", "afterTextChanged 被执行---->" + editable);
+				et5.setText("rtmp://"+et1.getText()+":"+editable+"/"+et6.getText()+"/"+et3.getText()+"?channel=1");
+			}
+		});
+
+		et3.addTextChangedListener(new TextWatcher()
+		{
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+			}
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+			}
+			@Override
+			public void afterTextChanged(Editable editable) {
+				Log.d("CMD", "afterTextChanged 被执行---->" + editable);
+				et5.setText("rtmp://"+et1.getText()+":"+et2.getText()+"/"+et6.getText()+"/"+editable+"?channel=1.sdp");
+			}
+		});
+
+		et6.addTextChangedListener(new TextWatcher()
+		{
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+			}
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+			}
+			@Override
+			public void afterTextChanged(Editable editable) {
+				Log.d("CMD", "afterTextChanged 被执行---->" + editable);
+				et5.setText("rtmp://"+et1.getText()+":"+et2.getText()+"/"+editable+"/"+et3.getText()+"?channel=1.sdp");
+			}
+		});
+
 		bt1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -94,7 +155,9 @@ public class SetActivity extends Activity {
 				sped.putString(Constants.name, et3.getText().toString());
 				//sped.putString(Constants.addPort, et_editTextkzport.getText().toString());
 				sped.putString(Constants.fps, et4.getText().toString());
-				//sped.putInt(Constants.mode, rg.getCheckedRadioButtonId());
+				sped.putString(Constants.Default_URL, et5.getText().toString());
+				sped.putString(Constants.application, et6.getText().toString());
+				///sped.putInt(Constants.mode, rg.getCheckedRadioButtonId());
 				sped.commit();					
 				Intent intent = new Intent(MainService.ACTION);
 				intent.putExtra("type", MainService.RESTART);

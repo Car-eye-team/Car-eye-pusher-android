@@ -54,6 +54,7 @@ public class MainActivity extends Activity {
 		mainactivity = this;
 		//启动通讯service\
 		FloatWindowManager.getInstance().applyOrShowFloatWindow(MainActivity.this);
+
 	}
 
 	private void getPermission() {

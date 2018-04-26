@@ -42,8 +42,6 @@ public class ServerManager {
 		}
 		return instance;
 	}
-
-
 	public String getIp() {
 		String ip = sp.getString(Constants.ip,Constants.SERVER_IP);
 		return ip;
@@ -63,11 +61,23 @@ public class ServerManager {
 		String streamname = sp.getString(Constants.name,Constants.STREAM_NAME);
 		return streamname;
 	}
-	
+	public int getMode(){
+		int mode = sp.getInt(Constants.mode, Constants.MODE);
+		return mode;
+	}
+	public String getURL() {
+		String URL = sp.getString(Constants.URL,Constants.Default_URL);
+		return URL;
+	}
+
+	public String getapp() {
+		String APP = sp.getString(Constants.application,Constants.RTMP_APP);
+		return APP;
+	}
+
 	public int getFramerate(){
 		int framerate = Integer.parseInt(sp.getString(Constants.fps,String.valueOf(Constants.FRAMERATE)));
 		return framerate;
 	}
-
 
 }

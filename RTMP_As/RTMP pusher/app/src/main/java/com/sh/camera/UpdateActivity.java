@@ -25,7 +25,6 @@ public class UpdateActivity extends Activity {
 		super.onCreate(arg0);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_update);
-		
 		activity = this;
 		//(EditText) findViewById(R.id.set_editText1);
 	}

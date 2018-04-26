@@ -22,6 +22,8 @@ import android.content.Intent;
 import android.graphics.ImageFormat;
 import android.graphics.Rect;
 import android.graphics.YuvImage;
+import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 
 /**    
@@ -48,35 +50,78 @@ public class CameraFileUtil {
 	 * @param etime 结束时间
 	 * @param cameraid 摄像头ID
 	 */
-	protected static final String ACTION_TAKE_FINISH  = "com.dss.launcher.ACTION_TAKE_FINISH";
-	public synchronized static void saveJpeg_snap(final int index, final byte[] data, final int width, final int height, final String filename)
+
+	public static File CreateText(String gg) throws IOException {
+		File file = new File(gg);
+		if (!file.exists()) {
+			try {
+				// 鎸夌収鎸囧畾鐨勮矾寰勫垱寤烘枃浠跺す
+				file.mkdirs();
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		}
+		File dir = new File(gg);
+		if (!dir.exists()) {
+			try {
+				// 鍦ㄦ寚瀹氱殑鏂囦欢澶逛腑鍒涘缓鏂囦欢
+				dir.createNewFile();
+			} catch (Exception e) {
+			}
+		}
+
+		return dir;
+
+	}
+	public static String getRootFilePath() {
+		if (hasSDCard()) {
+			return Environment.getExternalStorageDirectory().getAbsolutePath() + "/";
+		} else {
+			return Environment.getDataDirectory().getAbsolutePath() + "/data/";
+		}
+	}
+
+	public static boolean hasSDCard() {
+		String status = Environment.getExternalStorageState();
+		if (!status.equals(Environment.MEDIA_MOUNTED)) {
+			return false;
+		}
+		return true;
+	}
+
+	public synchronized static void saveJpeg_snap(final int index, final byte[] data, final int width, final int height)
 	{
+
+		final Handler handler = MainService.getInstance().handler;
 		new Thread(new Runnable() {
 			@Override
 			public void run() {	
 				File picture;            	
 	        try {
-		        	picture = new File(filename);	            				
-			       	if(picture.exists())
-					{
-			       		picture.delete();
-					}     
-		        	picture.createNewFile();      
-		        	FileOutputStream filecon = new FileOutputStream(picture);
+
+				File mFile = CreateText(getRootFilePath() + Constants.CAMERA_PATH);
+				picture = new File(mFile, (index+1)+"-"+new Date().getTime()+".jpg");
+				if(picture.exists())
+				{
+					picture.delete();
+				}
+		        picture.createNewFile();
+				FileOutputStream filecon = new FileOutputStream(picture);
 		            YuvImage image = new YuvImage(data,
 		                    ImageFormat.NV21, width, height,
 		                    null);				            
 		            image.compressToJpeg(
 		                    new Rect(0, 0, image.getWidth(), image.getHeight()),
 		                    90, filecon);   // 将NV21格式图片，以质量70压缩成Jpeg，并得到JPEG数据流
-		            filecon.close();  
-		        	Intent intent = new Intent(ACTION_TAKE_FINISH);
-					intent.putExtra("channel", index+1);
-					intent.putExtra("filename", filename);
-					MainService.getInstance().sendBroadcast(intent);						
-		           		            
+		            filecon.close();
+					if(handler != null){
+						handler.sendMessage(handler.obtainMessage(1001));
+					}
 		        }catch (IOException e)
 		        {
+		        	if(handler != null){
+						handler.sendMessage(handler.obtainMessage(1003));
+					}
 		            e.printStackTrace();		            
 		        }				
 			}

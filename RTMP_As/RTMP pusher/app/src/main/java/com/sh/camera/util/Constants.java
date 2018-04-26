@@ -53,6 +53,7 @@ public class Constants {
 	public static final String SERVER_ADDPORT = "10000";
 	/**设备号*/
 	public static final String STREAM_NAME = "13510671870";
+	public static final String RTMP_APP = "live";
 		
 	public static String ip = "ip";
 	public static String port = "port";
@@ -60,7 +61,9 @@ public class Constants {
 	public static String fps = "fps";
 	public static String rule = "rule";
 	public static String mode = "mode";
-	public static String addPort = "add_port";	
+	public static String addPort = "add_port";
+	public static String URL = "URL";
+	public static String application = "application";
 	public static int CAREYE_VCODE_H264 = 0x1C;
 	public static int CAREYE_VCODE_H265 = 0x48323635;
 
@@ -76,32 +79,16 @@ public class Constants {
 	public static String SD_CARD_PATH = "";
 	public static String INNER_CARD_PATH = "";
 	public static String SNAP_FILE_PATH = "";
-	/**SD清理界限、清理目标  100M 14950M*/
-	public static final  int SD_FREE2C = 800;//清理界限、清理目标 
-	/**SD清理界限、清理目标  达到极限 10M*/
-	public static final  long SD_FREEJX = 200;//清理界限、清理目标达到极限 5M 
-	/**是否正在清理sd内存*/
-	public static  boolean isCleaning = false;
 	public static  boolean AudioRecord = true;
 	public static  final boolean ExtPlayer = false;
 	/**帧速率*/
 	public static int FRAMERATE = 20;
+	public static int MODE = 20;
 	/**摄像头ID*/
 	public static int[] CAMERA_ID = {0,1,5,6};
-
 	/**录像状态 true录像中 false 未录像*/
 	public static boolean CAMERA_RECORD[] = {false,false,false,false};
-	
-	public static  boolean StartFlag  =false;
-	/** 产品类型 1 T3 2 一甲丙益后视镜  3 有方后视镜*/	
-	//录像回放有关的定义	
-	public static final String ACTION_VIDEO_PREVIEW = "ACTION_VIDEO_PREVIEW";
-	public static final String ACTION_VIDEO_PLAYBACK = "ACTION_VIDEO_PLAYBACK";
-	public static final String ACTION_REGIST_SUCCESS  = "ACTION_REGIST_SUCCESS";
-	public static final String ACTION_VIDEO_STOP_PLAYBACK  = "ACTION_VIDEO_STOP_PLAYBACK";
-	public static final String ACTION_VIDEO_FILE_PLAYBACK  = "ACTION_VIDEO_FILE_PLAYBACK";
-	public static final String ACTION_VIDEO_PLAYBACK_LIST =  "ACTION_VIDEO_PLAYBACK_LIST";	
-	public static final String ACTION_UPDATE_LOCATION =  "UPDATE_LOCATION";		
+	public static final String Default_URL = "rtmp://www.car-eye.cn:10085/live/13510671870?channel=1";
 	/**
 	 * 设置参数	 */
 	public static void setParam(Context context){
@@ -130,6 +117,7 @@ public class Constants {
 			e.printStackTrace();
 		}
 	}
+	public static final String CAMERA_PATH ="Careye_pusher/";
 	/**应用启动自动检测一次版本信息*/
 	public static boolean checkVersion = true;
 }

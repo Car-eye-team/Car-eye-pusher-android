@@ -78,7 +78,6 @@ public class CameraUtil {
 					{				          
 					}       
 				}
-
 				//预览之前先停止上传
 				if(VIDEO_UPLOAD[i]){
 					stopVideoUpload(i);
@@ -91,11 +90,9 @@ public class CameraUtil {
 				}
 				//初始化推流工具
 				VIDEO_UPLOAD[i] = true;
-				MainService.getInstance().startVideoUpload2(ipstr, portstr,serialno,i);
+				MainService.getInstance().startVideoUpload2(ipstr, portstr,ServerManager.getInstance().getapp(),serialno,i);
 			}
-		});                      
-
-
+		});
 	}
 
 	/**
@@ -108,15 +105,13 @@ public class CameraUtil {
 		if(CameraUtil.VIDEO_FILE_UPLOAD){
 			stopVideoFileStream();
 		}
-
 		//预览之前先停止上传
 		if(VIDEO_UPLOAD[i]){
 			stopVideoUpload(i);
 		}
-
 		//初始化推流工具
 		VIDEO_UPLOAD[i] = true;
-		MainService.getInstance().startVideoUpload2(ServerManager.getInstance().getIp(),ServerManager.getInstance().getPort(),ServerManager.getInstance().getStreamname(),i);
+		MainService.getInstance().startVideoUpload2(ServerManager.getInstance().getIp(),ServerManager.getInstance().getPort(),ServerManager.getInstance().getapp(),ServerManager.getInstance().getStreamname(),i);
 	}
 
 	/**
@@ -150,13 +145,12 @@ public class CameraUtil {
 					i++;
 					String filename = map.get("name");
 					int cameraid = Integer.parseInt(filename.split("-")[0]);
-					String streamName =  String.format("live/%s-%d", streamname,(cameraid-1));
+					String streamName =  String.format("live/%s?%d", streamname,(cameraid-1));
 					//开始上传
 					if(MainService.mPusher == null){
 						MainService.mPusher = new Pusher();
 					}
 					MainService.mPusher.startfilestream(ip, port,streamName, map.get("path"));
-					
 				}
 			}
 		}).start();
@@ -171,20 +165,17 @@ public class CameraUtil {
 	 * @param filename 文件名称
 	 */
 	public static void startVideoFileStream(final int cameraid,final int splaysec,final int eplaysec,final String filename,final Handler handler){
-
 		try {
-
 			SharedPreferences sp = MainService.getInstance().getSharedPreferences("fcoltest", MainService.getInstance().MODE_PRIVATE);
 			final String ip = sp.getString("ip",Constants.SERVER_IP);
 			final String port = sp.getString("port",Constants.SERVER_PORT);
 			final String streamname = sp.getString("name",Constants.STREAM_NAME);
-			
 			if(streamname.equals(Constants.STREAM_NAME))
 			{
 				Toast.makeText(MainService.getInstance(), "请修改设备名", 1000).show();
 			}
 			
-			final String streamName =  String.format("live/%s-channel=%d", streamname,cameraid);
+			final String streamName =  String.format("live/%s?channel=%d", streamname,cameraid);
 
 			Log.d("CMD", " filePath upload"+filename);
 
@@ -206,7 +197,6 @@ public class CameraUtil {
 							e.printStackTrace();
 						}	
 					}
-
 					//上传之前先停止预览
 					int i = cameraid-1;
 					if(VIDEO_UPLOAD[i]){
@@ -217,8 +207,7 @@ public class CameraUtil {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}	
-					}			
-
+					}
 					CameraUtil.VIDEO_FILE_UPLOAD = true;
 					Log.d("CMD", " restart"+filename);
 					MainService.mPusher.startfilestream( ip, port, streamName, filename,splaysec,eplaysec,handler);
@@ -257,45 +246,6 @@ public class CameraUtil {
 		}).start();		
 	}
 
-	/**
-	 * 拍照
-	 * @param cameraid 通道ID 0-3
-	 * @param type 操作类型  1 内部操作  2 外部操作
-	 */
-	public static boolean cameraTakePicture(int cameraid,int type){
-
-		try {
-			//检查SD卡是否存在
-			Log.d("CMD", " cameraTakePicture"+cameraid);
-			CAMERA_OPER_MODE = type;
-			if(CAMERA_OPER_MODE == 1){
-				if(!SdCardUtil.checkSdCardUtil()){
-					AppLog.d(tag, "SD卡不存在");
-					return false;
-				}
-			}else
-			{
-				File f = new File(Constants.SNAP_FILE_PATH);
-				if(!f.exists()){
-					f.mkdirs();
-				}
-			}
-			int index = cameraid;
-			Camera camera = MainService.camera[index];
-			if(camera!=null){
-				MainService.picid = cameraid;
-				camera.takePicture(null, null, pictureCallback);
-				return true;
-			}
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return false;
-		}
-
-		return false;
-	}
 	/**
 	 * 录像
 	 * @param cameraid 通道ID 1-4 
@@ -342,18 +292,15 @@ public class CameraUtil {
 			try {
 				FileOutputStream fos = new FileOutputStream(picture.getPath());  
 				fos.write(params[0]); 
-				fos.close();   
-			
+				fos.close();
 				if(handler != null){
 					handler.sendMessage(handler.obtainMessage(1001));
 				}
-
 			} catch (Exception e) {  
 				e.printStackTrace(); 
 				if(handler != null){
 					handler.sendMessage(handler.obtainMessage(1003));
 				}
-				
 			}  
 			return null;  
 		}  

@@ -10,21 +10,16 @@ import java.util.Date;
 
 import org.push.hw.EncoderDebugger;
 import org.push.hw.NV21Convertor;
-import android.content.Intent;
 
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.media.MediaCodec;
-import android.os.Handler;
-import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 
 import com.sh.camera.audio.AudioStream;
 import com.sh.camera.service.MainService;
 import com.sh.camera.util.AppLog;
-import com.sh.camera.util.CameraFileUtil;
 import com.sh.camera.util.Constants;
-
+import com.sh.camera.util.CameraFileUtil;
 /**    
  *     
  * 项目名称：SH_CAMERA    
@@ -66,10 +61,9 @@ public class MediaCodecManager {
 	 * 释放解码器资源
 	 * @param index
 	 */	
- public static  void Startpick(int type)
+ public static  void PrepareTakePicture()
  {
 	 TakePicture = true;
-	 CAMERA_OPER_MODE = type;	 
  }
 	
  
@@ -95,7 +89,6 @@ public class MediaCodecManager {
  
  public void StopUpload(int index)
  {
-	
 	 if(mVC[index]!= null)
 	 {
 		 mVC[index].onVideoStop();
@@ -105,42 +98,10 @@ public class MediaCodecManager {
 	 if (audioStream != null) {
          audioStream.stop();
          audioStream = null;
-         
      }
 	 
  } 
-	public static boolean TakePicture(int cameraid,int type){
-		try {
-			//检查SD卡是否存在			
-			CAMERA_OPER_MODE = type;
-			if(CAMERA_OPER_MODE == 1){
-				//if(!SdCardUtil.checkSdCardUtil()){
-				if(MainService.getDiskManager().getDiskCnt()<=0){
-					AppLog.d(TAG, "SD卡不存在");
-					return false;
-				}
-			}else
-			{
-				File f = new File(Constants.SNAP_FILE_PATH);
-				if(!f.exists()){
-					f.mkdirs();
-				}
-			}
-		
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return false;
-		}
-		Camera camera = MainService.camera[cameraid];
-		if(camera!=null){
-			MainService.picid = cameraid;		
-			MainService.getInstance().setCallback(cameraid, camera);
-			TakePicture  = true;
-			return true;
-		}		
-		return false;
-	}
+
 
 public void onPreviewFrameUpload(byte[] data,int index,Camera camera){			
 	 if (data == null ) {
@@ -152,15 +113,18 @@ public void onPreviewFrameUpload(byte[] data,int index,Camera camera){
     	 camera.addCallbackBuffer(data);
     	 return;
      }   
-     if(TakePicture && MainService.picid == index )
+     if(TakePicture )
      {    	
-    	TakePicture = false;    	
-	  	CameraFileUtil.saveJpeg_snap(index, data, Constants.UPLOAD_VIDEO_WIDTH, Constants.UPLOAD_VIDEO_HEIGHT,  MainService.disk.getDiskDirectory(MainService.disk.SelectDisk())+Constants.CAMERA_FILE_DIR+(index+1)+"-"+new Date().getTime()+".jpg");
-     }  
+    	TakePicture = false;
+		 CameraFileUtil.saveJpeg_snap(
+					 index,
+					 data,
+					 Constants.UPLOAD_VIDEO_WIDTH,
+					 Constants.UPLOAD_VIDEO_HEIGHT);
+	 }
      if(mVC[index]!= null)
      {
       	 mVC[index].onVideo(data, previewFormat);
-    	
      }else
      {   	
     	 camera.setPreviewCallback(null);    
