@@ -1,6 +1,6 @@
 # Car-eye-pusher-android        
 
-car-push-android 是car-eye开源团队开发的一个推送库。demo程序分成RTSP和RTMP推送两个版本,是car-eye-device android版的简化版本,支持实时监控和远程回放，接口跟Car-eye-device一样。
+car-push-android 是car-eye开源团队开发的一个推送程序demo。程序分成RTSP和RTMP推送两个版本,是car-eye-device android版的简化版本,支持实时监控和远程回放，接口跟Car-eye-device一样。
 
 ## 库接口说明
 
@@ -59,7 +59,7 @@ Result:返回码，一般为结束或者错误码
 
 ## 其他说明
 如果不输入URL地址，那么程序将用默认的服务器地址推送数据流。RTSP发送的URL为：rtsp://IP(或者域名):端口/设备编号?channel=1.sdp,
-RTMP实时播放地址是rtmp://IP(或者域名):端口/live/设备编号?channel=1,可以使用car-eye-player或者其他的RTSP客户端进行视频播放. 
+RTMP实时播放地址是rtmp://IP(或者域名):端口/应用名/设备编号?channel=1,可以使用car-eye-player或者其他的RTSP客户端进行视频播放. 
 
 
 ## 特别注意
