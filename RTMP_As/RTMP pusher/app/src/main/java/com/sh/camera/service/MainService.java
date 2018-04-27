@@ -109,7 +109,7 @@ public class MainService extends Service {
 	public static String STOPRECORDER = "stoprecorder";
 	//通知结束上传
 	public static String STOPPUSH = "stoppush";
-	BroadcastReceiver 	SYSBr;	
+	BroadcastReceiver 	SYSBr;
 	boolean usbcameraConnect = true;
 	boolean sd_inject = false;
 	private Button btn_app_minimize,btn_app_exit;
@@ -174,9 +174,6 @@ public class MainService extends Service {
 	public void onDestroy() {
 		super.onDestroy();
 		isrun = false;
-		unregisterReceiver(br);
-		unregisterReceiver(SYSBr);
-		//取消监听
 		Log.d("CMD", "onDestroy");
 		System.exit(0);
 	};
@@ -231,7 +228,6 @@ public class MainService extends Service {
 				stopSelf();
 			}
 		}
-
 	};
 
 	private void restart() {
@@ -689,8 +685,7 @@ public class MainService extends Service {
 						Intent intent = new Intent(ACTION);
 						intent.putExtra("type", "EXIT");
 						sendBroadcast(intent);
-
-					}
+				}
 					 catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -823,7 +818,6 @@ public class MainService extends Service {
 		});
 	}
 	private void generateVideoFilename(int index,  int outputFileFormat) {
-
 		File mFile;
 		try {
 			mFile = CameraFileUtil.CreateText(CameraFileUtil.getRootFilePath() + Constants.CAMERA_PATH);
