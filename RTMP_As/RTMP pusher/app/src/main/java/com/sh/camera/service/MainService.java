@@ -718,9 +718,9 @@ public class MainService extends Service {
 	int m_index_channel;
 	public void startVideoUpload2(final String ipstr,final String portstr, final String app, final String serialno, final int index){
 		final int CameraId;
-		CameraId = index+1;			
-		if(camera[index]==null) {				
-			return;			
+		CameraId = index+1;
+		if(camera[index]==null) {
+			return;
 		}	
 		if(serialno.equals(Constants.STREAM_NAME))
 		{
@@ -738,12 +738,13 @@ public class MainService extends Service {
 						if(m_index_channel < 0)
 						{
 							Log.d("CMD", " init error, error number"+m_index_channel);
+							//Toast.makeText(MainService.getInstance(), "链接服务器失败："+m_index_channel, 1000).show();
 							return;
 						}
 						CameraUtil.VIDEO_UPLOAD[index] = true;
 						StreamIndex[index] = m_index_channel;
-						camera[index].setPreviewCallback(preview[index]);	
-						MediaCodecManager.getInstance().StartUpload(index,camera[index]);						
+						MediaCodecManager.getInstance().StartUpload(index,camera[index]);
+						camera[index].setPreviewCallback(preview[index]);
 					}
 				});
 			}
