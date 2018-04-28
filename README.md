@@ -4,26 +4,26 @@ car-push-android 是car-eye开源团队开发的一个推送程序demo。程序�
 
 ## 库接口说明
 
-接口原型： public native int  CarEyeInitNetWork(Context context,String serverIP, String serverPort, String streamName, int videoformat, int fps,int audioformat, int audiochannel, int audiosamplerate);    
+接口原型： public native int  CarEyeInitNetWork(RTMP/RTSP)(Context context,String serverIP, String serverPort, String streamName, int videoformat, int fps,int audioformat, int audiochannel, int audiosamplerate);    
 接口功能：初始化流媒体通道  
 参数说明：   
 context：应用句柄   
-server IP:流媒体服务器的IP，可以是域名如www.car-eye.cn  
-serverPort:RTSP流媒体的端口号     
+server IP: 流媒体服务器的IP，可以是域名如www.car-eye.cn  
+serverPort: 流媒体服务器的端口号     
 streamName： 设备名：如手机号码13510671870 是设备的唯一标识    
-videoformat： 视频格式，支持H264，265 MJPEG    
+videoformat：视频格式，支持H264，265 MJPEG    
 fps： 帧频率  
 audioformat： 音频格式支持AAC,G711,G726等    
 返回：通道号
 
-接口原型：public native int 	 CarEyePusherIsReady(int channel);     
+接口原型：public native int 	 CarEyePusherIsReady(RTMP/RTSP)(int channel);     
 接口功能：判断通道是否准备好，用来开启推送1：已经准备好，0还没准备好。   
 参数说明：   
 channel：通道号
 返回：1 通道已经准备好 0 通道还没准备好
 
-接口原型： public native long   CarEyeSendBuffer(long time, byte[] data, int lenth, int type, int channel);   
-接口功能：填充流媒体数据到RTSP服务器 
+接口原型： public native long   CarEyeSendBuffer(RTMP/RTSP)(long time, byte[] data, int lenth, int type, int channel);   
+接口功能：填充流媒体数据到服务器 
 参数说明：   
 time: 推送时间数，毫秒单位
 data:  多媒体数据   
@@ -33,17 +33,39 @@ channel：推送的通道号
 返回：0 为发送数据成功  其他 为错误码
 
 
-接口原型 public native int    CarEyeStopNativeFileRTSP(int channel);   
+接口原型 public native int    CarEyeStopNativeFile返回：通道号
+
+接口原型：public native int 	 CarEyePusherIsReady(RTMP/RTSP)(int channel);     
+接口功能：判断通道是否准备好，用来开启推送1：已经准备好，0还没准备好。   
+参数说明：   
+channel：通道号
+返回：1 通道已经准备好 0 通道还没准备好
+
+接口原型： public native long   CarEyeSendBuffer(RTMP/RTSP)(long time, byte[] data, int lenth, int type, int channel);   
+接口功能：填充流媒体数据到服务器 
+参数说明：   
+time: 推送时间数，毫秒单位
+data:  多媒体数据   
+lenth：数据长度    
+type ：视频还是音频   
+channel：推送的通道号  
+返回：0 为发送数据成功  其他 为错误码
+
+
+接口原型 public native int    CarEyeStopNativeFile(RTMP/RTSP)(int channel);   
+
+
+
 接口功能：结束文件的推送   
 参数说明:   
 channel:通道号  
 
-接口原型： public native int   CarEyeStartNativeFileRTSPEX(Context context, String serverIP, String serverPort, String streamName,  String fileName,int start, int end);          
+接口原型： public native int   CarEyeStartNativeFile(RTSP/RTMP)EX(Context context, String serverIP, String serverPort, String streamName,  String fileName,int start, int end);          
 
 接口功能：启动文件的推送 
 参数说明:context：应用句柄  
 serverIP:流媒体服务器的IP，可以是域名如www.car-eye.cn     
-serverPort:RTSP流媒体的端口号      
+serverPort:流媒体的端口号      
 streamName： 设备名：如手机号码13510671870 是设备的唯一标识  
 fileName：文件的绝对路径      
 start：推送的文件相对偏移的开始时间     
@@ -59,7 +81,7 @@ Result:返回码，一般为结束或者错误码
 
 ## 其他说明
 如果不输入URL地址，那么程序将用默认的服务器地址推送数据流。RTSP发送的URL为：rtsp://IP(或者域名):端口/设备编号?channel=1.sdp,
-RTMP实时播放地址是rtmp://IP(或者域名):端口/应用名/设备编号?channel=1,可以使用car-eye-player或者其他的RTSP客户端进行视频播放. 
+RTMP实时播放地址是rtmp://IP(或者域名):端口/应用名/设备编号?channel=1,可以使用car-eye-player或者其他的客户端进行视频播放. 
 
 
 ## 特别注意
