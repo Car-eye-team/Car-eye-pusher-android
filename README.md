@@ -5,16 +5,16 @@ car-push-android 是car-eye开源团队开发的一个推送程序demo。程序�
 ## 库接口说明
 
 接口原型： public native int  CarEyeInitNetWork(RTMP/RTSP)(Context context,String serverIP, String serverPort, String streamName, int videoformat, int fps,int audioformat, int audiochannel, int audiosamplerate);    
-接口功能：初始化流媒体通道  
+接口功能：初始化流媒体通道     
 参数说明：   
-context：应用句柄   
-server IP: 流媒体服务器的IP，可以是域名如www.car-eye.cn  
-serverPort: 流媒体服务器的端口号     
-streamName： 设备名：如手机号码13510671870 是设备的唯一标识    
-videoformat：视频格式，支持H264，265 MJPEG    
-fps： 帧频率  
-audioformat： 音频格式支持AAC,G711,G726等    
-返回：通道号
+context：应用句柄     
+server IP: 流媒体服务器的IP，可以是域名如www.car-eye.cn    
+serverPort: 流媒体服务器的端口号       
+streamName： 设备名：如手机号码13510671870 是设备的唯一标识        
+videoformat：视频格式，支持H264，265 MJPEG       
+fps： 帧频率     
+audioformat： 音频格式支持AAC,G711,G726等        
+返回：通道号   
 
 接口原型：public native int 	 CarEyePusherIsReady(RTMP/RTSP)(int channel);     
 接口功能：判断通道是否准备好，用来开启推送1：已经准备好，0还没准备好。   
@@ -53,8 +53,6 @@ channel：推送的通道号  
 
 
 接口原型 public native int    CarEyeStopNativeFile(RTMP/RTSP)(int channel);   
-
-
 
 接口功能：结束文件的推送   
 参数说明:   
