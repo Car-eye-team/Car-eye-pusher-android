@@ -47,8 +47,8 @@ channel：通道号
 time: 推送时间数，毫秒单位
 data:  多媒体数据   
 lenth：数据长度    
-type ：视频还是音频   
-channel：推送的通道号  
+type ：视频还是音频      
+channel：推送的通道号      
 返回：0 为发送数据成功  其他 为错误码
 
 
@@ -68,12 +68,12 @@ serverIP:流媒体服务器的IP，可以是域名如www.car-eye.cn
 serverPort:流媒体的端口号      
 streamName： 设备名：如手机号码13510671870 是设备的唯一标识  
 fileName：文件的绝对路径      
-start：推送的文件相对偏移的开始时间     
-end：  推送文件的相对偏移的结束时间     
-返回：通道号（1-8） 其他为错误  
+start：推送的文件相对偏移的开始时间       
+end：  推送文件的相对偏移的结束时间        
+返回：通道号（1-8） 其他为错误        
 
 接口原型   public void  CarEyeCallBack(int channel, int Result)   
-接口功能：推送文件的callback函数      
+接口功能：推送文件的callback函数        
 参数说明:    
 channel：通道号     
 Result:返回码，一般为结束或者错误码      
