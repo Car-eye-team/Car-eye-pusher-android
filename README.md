@@ -2,6 +2,16 @@
 
 car-push-android 是car-eye开源团队开发的一个推送程序demo。程序分成RTSP和RTMP推送两个版本,是car-eye-device android版的简化版本,支持实时监控和远程回放，接口跟Car-eye-device一样。
 
+
+## 功能说明
+
+目前支持的功能有：
+* 录像和拍照
+* 实时推送音视频数据
+* 推送历史记录，精确到MP4文件内部毫秒级
+* 推送服务断开重连
+
+
 ## 库接口说明
 
 接口原型： public native int  CarEyeInitNetWork(RTMP/RTSP)(Context context,String serverIP, String serverPort, String streamName, int videoformat, int fps,int audioformat, int audiochannel, int audiosamplerate);    
