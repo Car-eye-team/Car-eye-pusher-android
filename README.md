@@ -90,12 +90,6 @@ Result:返回码，一般为结束或者错误码
 ## 其他说明
 RTSP发送的URL为：rtsp://IP(或者域名):端口/设备编号?channel=1.sdp,RTMP实时播放地址是rtmp://IP(或者域名):端口/应用名/设备编号?channel=1,可以使用car-eye-player或者其他的客户端进行视频播放. 
 
-
-## 特别注意
-
-请开手机的启悬浮窗权限
-
-
 # 联系我们     
 
 car-eye开源官方网址：www.car-eye.cn       
