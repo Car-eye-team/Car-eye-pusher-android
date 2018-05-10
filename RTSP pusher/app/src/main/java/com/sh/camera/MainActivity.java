@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
 		int version = android.os.Build.VERSION.SDK_INT;
 		Log.d("CMD", "version : " + version);
 		setContentView(R.layout.activity_splash);
-		listener=new FloatWindowManager.MyListener() {
+		/*listener=new FloatWindowManager.MyListener() {
 			@Override
 			public void getData(boolean res) {
 				if (res)
@@ -50,10 +50,11 @@ public class MainActivity extends Activity {
 				//	getPermission();
 
 			}
-		}).start();
+		}).start();*/
 		mainactivity = this;
+		getPermission();
 		//启动通讯service\
-		FloatWindowManager.getInstance().applyOrShowFloatWindow(MainActivity.this);
+		//FloatWindowManager.getInstance().applyOrShowFloatWindow(MainActivity.this);
 
 	}
 
@@ -72,11 +73,11 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-		Boolean checkPer=	FloatWindowManager.getInstance().CheckPer(MainActivity.this);
+		/*Boolean checkPer=	FloatWindowManager.getInstance().CheckPer(MainActivity.this);
 		if (checkPer)
 		{
 			getPermission();
-		}
+		}*/
 	}
 }
 
