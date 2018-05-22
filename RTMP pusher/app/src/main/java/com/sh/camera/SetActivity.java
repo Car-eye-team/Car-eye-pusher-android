@@ -92,7 +92,7 @@ public class SetActivity extends Activity {
 			@Override
 			public void afterTextChanged(Editable editable) {
 				Log.d("CMD", "afterTextChanged 被执行---->" + editable);
-				et5.setText("rtmp://"+editable+":"+et2.getText()+"/"+et6.getText()+"/"+et3.getText()+"?channel=1");
+				et5.setText("rtmp://"+editable+":"+et2.getText()+"/"+et6.getText()+"/"+et3.getText()+"&channel=1");
 			}
 		});
 		et2.addTextChangedListener(new TextWatcher()
@@ -106,7 +106,7 @@ public class SetActivity extends Activity {
 			@Override
 			public void afterTextChanged(Editable editable) {
 				Log.d("CMD", "afterTextChanged 被执行---->" + editable);
-				et5.setText("rtmp://"+et1.getText()+":"+editable+"/"+et6.getText()+"/"+et3.getText()+"?channel=1");
+				et5.setText("rtmp://"+et1.getText()+":"+editable+"/"+et6.getText()+"/"+et3.getText()+"&channel=1");
 			}
 		});
 
@@ -121,7 +121,7 @@ public class SetActivity extends Activity {
 			@Override
 			public void afterTextChanged(Editable editable) {
 				Log.d("CMD", "afterTextChanged 被执行---->" + editable);
-				et5.setText("rtmp://"+et1.getText()+":"+et2.getText()+"/"+et6.getText()+"/"+editable+"?channel=1");
+				et5.setText("rtmp://"+et1.getText()+":"+et2.getText()+"/"+et6.getText()+"/"+editable+"&channel=1");
 			}
 		});
 
@@ -136,7 +136,7 @@ public class SetActivity extends Activity {
 			@Override
 			public void afterTextChanged(Editable editable) {
 				Log.d("CMD", "afterTextChanged 被执行---->" + editable);
-				et5.setText("rtmp://"+et1.getText()+":"+et2.getText()+"/"+editable+"/"+et3.getText()+"?channel=1");
+				et5.setText("rtmp://"+et1.getText()+":"+et2.getText()+"/"+editable+"/"+et3.getText()+"&channel=1");
 			}
 		});
 

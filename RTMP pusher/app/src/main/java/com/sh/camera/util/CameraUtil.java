@@ -145,7 +145,7 @@ public class CameraUtil {
 					i++;
 					String filename = map.get("name");
 					int cameraid = Integer.parseInt(filename.split("-")[0]);
-					String streamName =  String.format("live/%s?channel=%d", streamname,(cameraid-1));
+					String streamName =  String.format("live/%s&channel=%d", streamname,(cameraid-1));
 					//开始上传
 					if(MainService.mPusher == null){
 						MainService.mPusher = new Pusher();
@@ -175,7 +175,7 @@ public class CameraUtil {
 				Toast.makeText(MainService.getInstance(), "请修改设备名", 1000).show();
 			}
 			
-			final String streamName =  String.format("live/%s?channel=%d", streamname,cameraid);
+			final String streamName =  String.format("live/%s&channel=%d", streamname,cameraid);
 
 			Log.d("CMD", " filePath upload"+filename);
 
