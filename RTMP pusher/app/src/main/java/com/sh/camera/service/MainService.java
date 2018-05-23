@@ -37,6 +37,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.widget.TextView;
 
 import com.sh.RTMP_Pusher.R;
 import com.sh.camera.FileActivity;
@@ -114,6 +115,8 @@ public class MainService extends Service {
 	boolean sd_inject = false;
 	private Button btn_app_minimize,btn_app_exit;
 	private FrameLayout   inc_alertaui;
+	private FrameLayout   inc_url;
+	private TextView  text_url;
 
 	// 获取本地application的对象
 	private boolean isTabletDevice = true;
@@ -467,6 +470,8 @@ public class MainService extends Service {
 		for (int i = 0; i < Constants.MAX_NUM_OF_CAMERAS; i++) {
 			initPreview(i);
 		}
+		inc_url = (FrameLayout) view.findViewById(R.id.inc_url);
+		text_url = (TextView) view.findViewById(R.id.text_url);
 	}
 	/**
 	 * 初始化预览
@@ -643,6 +648,7 @@ public class MainService extends Service {
 			case R.id.bt_ly_3_bottom://上传
 				clickLock = true;
 				if (isSC) {
+					inc_url.setVisibility(View.GONE);
 					stopSC();
 				} else {
 					//处理上传
@@ -743,6 +749,8 @@ public class MainService extends Service {
 						camera[index].setPreviewCallback(preview[index]);
 					}
 				});
+				inc_url.setVisibility(View.VISIBLE);
+				text_url.setText("rtmp://"+ipstr+":"+portstr+"/"+Constants.RTMP_APP+"/"+Constants.STREAM_NAME+"&channel="+CameraId);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
