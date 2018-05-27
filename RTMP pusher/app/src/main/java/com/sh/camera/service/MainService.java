@@ -13,6 +13,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.graphics.SurfaceTexture;
@@ -53,7 +54,9 @@ import com.sh.camera.util.ExceptionUtil;
 import com.sh.camera.version.VersionBiz;
 import org.push.push.Pusher;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
 
 @SuppressLint("NewApi")
@@ -147,6 +150,24 @@ public class MainService extends Service {
 		Constants.setParam(c);
 		inflater = LayoutInflater.from(c);
 		registerReceiver(br, filter);
+		File youyuan = getFileStreamPath("msyh.ttf");
+		if (!youyuan.exists()){
+			AssetManager am = getAssets();
+			try {
+				InputStream is = am.open("msyh.ttf");
+				FileOutputStream os = openFileOutput("msyh.ttf", MODE_PRIVATE);
+				byte[] buffer = new byte[1024];
+				int len = 0;
+				while ((len = is.read(buffer)) != -1) {
+					os.write(buffer, 0, len);
+				}
+				os.close();
+				is.close();
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		Log.d("CMD", "onCreate");
 	}	
 
