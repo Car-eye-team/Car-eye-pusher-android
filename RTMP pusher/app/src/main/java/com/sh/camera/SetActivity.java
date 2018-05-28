@@ -155,7 +155,7 @@ public class SetActivity extends Activity {
 				sped.putString(Constants.name, et3.getText().toString());
 				//sped.putString(Constants.addPort, et_editTextkzport.getText().toString());
 				sped.putString(Constants.fps, et4.getText().toString());
-				sped.putString(Constants.Default_URL, et5.getText().toString());
+				sped.putString(Constants.URL, et5.getText().toString());
 				sped.putString(Constants.application, et6.getText().toString());
 				///sped.putInt(Constants.mode, rg.getCheckedRadioButtonId());
 				sped.commit();					

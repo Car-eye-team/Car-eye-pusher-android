@@ -171,7 +171,6 @@ public class MainService extends Service {
 		Log.d("CMD", "onCreate");
 	}	
 
-
 	public int  onStart(Intent intent,int flags,  int startId) {
 		// TODO Auto-generated method stub
 		//super.onStart(intent, startId);
@@ -771,7 +770,8 @@ public class MainService extends Service {
 					}
 				});
 				inc_url.setVisibility(View.VISIBLE);
-				text_url.setText("rtmp://"+ipstr+":"+portstr+"/"+Constants.RTMP_APP+"/"+Constants.STREAM_NAME+"&channel="+CameraId);
+				//text_url.setText("rtmp://"+ipstr+":"+portstr+"/"+Constants.RTMP_APP+"/"+Constants.STREAM_NAME+"&channel="+CameraId);
+				text_url.setText(ServerManager.getInstance().getURL());
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
