@@ -120,7 +120,6 @@ public class MainService extends Service {
 	private FrameLayout   inc_alertaui;
 	private FrameLayout   inc_url;
 	private TextView  text_url;
-
 	// 获取本地application的对象
 	private boolean isTabletDevice = true;
 	public static MainService getInstance() {
@@ -128,8 +127,7 @@ public class MainService extends Service {
 			instance = new MainService();
 		}
 		return instance;
-	}	
-
+	}
 
 	@Override
 	public void onCreate() {
@@ -163,7 +161,6 @@ public class MainService extends Service {
 				}
 				os.close();
 				is.close();
-
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

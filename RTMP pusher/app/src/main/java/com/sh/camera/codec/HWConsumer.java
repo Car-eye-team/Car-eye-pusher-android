@@ -1,12 +1,10 @@
 /*  car eye 车辆管理平台 
  * car-eye管理平台   www.car-eye.cn
  * car-eye开源网址:  https://github.com/Car-eye-team
- * Copyright
+ * Copyright 2018
  */
 
-
 package com.sh.camera.codec;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.ImageFormat;
@@ -20,10 +18,11 @@ import org.push.hw.EncoderDebugger;
 import org.push.hw.NV21Convertor;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.push.push.Pusher;
 import com.sh.camera.service.MainService;
 import com.sh.camera.util.Constants;
-
 
 /**
  * Created by apple on 2017/5/13.
@@ -31,11 +30,14 @@ import com.sh.camera.util.Constants;
 public class HWConsumer extends Thread implements VideoConsumer {
     @Nullable
     public Muxer mMuxer;
+    private static final String TAG = "CMD";
     private final Context mContext;
     private final Pusher mPusher;
     private int mHeight;
     private int mWidth;
     private MediaCodec mMediaCodec;
+    private FFmpegNative m_ffmpeg;
+    private long m_filter;
     private ByteBuffer[] inputBuffers;
     private ByteBuffer[] outputBuffers;
     private NV21Convertor mVideoConverter;
@@ -45,22 +47,28 @@ public class HWConsumer extends Thread implements VideoConsumer {
         mContext = context;
         mPusher = pusher;
         m_index = index;
-       
+        m_filter = 0;
+        if(Constants.ffmpeg == true) {
+            m_ffmpeg = new FFmpegNative();
+            m_ffmpeg.FFMPEG_init();
+        }
     }
     @Override
     public void onVideoStart(int width, int height) throws IOException {
         this.mWidth = width;
         this.mHeight = height;
         startMediaCodec();
-       
         inputBuffers = mMediaCodec.getInputBuffers();
         outputBuffers = mMediaCodec.getOutputBuffers();
-        
-
         start();
         mVideoStarted = true;
-    }
+        if(Constants.filter == true && Constants.ffmpeg == true)
+        {
+              m_filter = m_ffmpeg.InitOSD(width,height, 10, 10,28, 0x00ff00, mContext.getFileStreamPath("msyh.ttf").getAbsolutePath(),"test");
+              Log.d(TAG, "write data sucessful:"+mContext.getFileStreamPath("msyh.ttf").getAbsolutePath());
 
+        }
+    }
     //final int millisPerframe = 1000/25;
     long lastPush = 0;
     @Override
@@ -68,11 +76,19 @@ public class HWConsumer extends Thread implements VideoConsumer {
         if (!mVideoStarted)return 0;
         if(mPusher.CarEyePusherIsReadyRTMP(m_index)==0)
         {
-        	Log.d("CMD", " onVideo not ready ");	
+        	Log.d(TAG, " onVideo not ready ");
         	return 0;
         }
               
         data = mVideoConverter.convert(data);
+        if(Constants.filter == true && Constants.ffmpeg == true)
+        {
+            if(m_filter!=0)
+            {
+                String txt = "Car-eye-pusher:" + new SimpleDateFormat("yy-MM-dd HH:mm:ss SSS").format(new Date());
+                int result = m_ffmpeg.blendOSD(m_filter,data,txt);
+            }
+        }
 		inputBuffers = mMediaCodec.getInputBuffers();
 		outputBuffers = mMediaCodec.getOutputBuffers();
         int bufferIndex = mMediaCodec.dequeueInputBuffer(0);        
@@ -85,7 +101,6 @@ public class HWConsumer extends Thread implements VideoConsumer {
 		    buffer.clear();
 		    mMediaCodec.queueInputBuffer(bufferIndex, 0, data.length, System.nanoTime() / 1000, 0);
 		}
-        
         return 0;
     }
     @Override
@@ -96,7 +111,6 @@ public class HWConsumer extends Thread implements VideoConsumer {
         byte[]h264 = new byte[mWidth*mHeight*3/2];        
 
         do {
-        	
             outputBufferIndex = mMediaCodec.dequeueOutputBuffer(bufferInfo, 30000);
             if (outputBufferIndex == MediaCodec.INFO_TRY_AGAIN_LATER) {
                 // no output available yet
@@ -141,8 +155,7 @@ public class HWConsumer extends Thread implements VideoConsumer {
                     System.arraycopy(mPpsSps, 0, h264, 0, mPpsSps.length);
                     outputBuffer.get(h264, mPpsSps.length, bufferInfo.size);
                     mPusher.SendBuffer_org( h264,  mPpsSps.length + bufferInfo.size, (bufferInfo.presentationTimeUs / 1000),0, m_index);
-                    	 	
-                }else{                	
+             	 }else{
                     outputBuffer.get(h264, 0, bufferInfo.size);
                     mPusher.SendBuffer_org( h264,  bufferInfo.size,  (bufferInfo.presentationTimeUs / 1000), 0, m_index);                  
                 }                
@@ -164,6 +177,10 @@ public class HWConsumer extends Thread implements VideoConsumer {
         }while (isAlive());
         if (mMediaCodec != null) {
             stopMediaCodec();
+        }
+        if(m_filter!=0)
+        {
+            m_ffmpeg.DelOSD(m_filter);
         }
     }
 
@@ -202,7 +219,6 @@ Video bitrate 384 Kbps 2 Mbps 4 Mbps 10 Mbps
         mediaFormat.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, 1);
         mMediaCodec.configure(mediaFormat, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);
         mMediaCodec.start();
-
         Bundle params = new Bundle();
         params.putInt(MediaCodec.PARAMETER_KEY_REQUEST_SYNC_FRAME, 0);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

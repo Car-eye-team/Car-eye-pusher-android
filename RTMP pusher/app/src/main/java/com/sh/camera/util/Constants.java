@@ -81,6 +81,8 @@ public class Constants {
 	public static String SNAP_FILE_PATH = "";
 	public static  boolean AudioRecord = true;
 	public static  final boolean ExtPlayer = false;
+	public static  final boolean ffmpeg = true;
+	public static  final boolean filter = true;
 	/**帧速率*/
 	public static int FRAMERATE = 20;
 	public static int MODE = 20;
@@ -88,7 +90,7 @@ public class Constants {
 	public static int[] CAMERA_ID = {0,1,5,6};
 	/**录像状态 true录像中 false 未录像*/
 	public static boolean CAMERA_RECORD[] = {false,false,false,false};
-	public static final String Default_URL = "rtmp://www.car-eye.cn:10085/live/13510671870?channel=1";
+	public static final String Default_URL = "rtmp://www.car-eye.cn:10085/live/13510671870&channel=1";
 	/**
 	 * 设置参数	 */
 	public static void setParam(Context context){

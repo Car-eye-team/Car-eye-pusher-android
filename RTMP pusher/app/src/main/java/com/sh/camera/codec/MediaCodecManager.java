@@ -100,8 +100,7 @@ public class MediaCodecManager {
          audioStream = null;
      }
 	 
- } 
-
+ }
 
 public void onPreviewFrameUpload(byte[] data,int index,Camera camera){			
 	 if (data == null ) {
