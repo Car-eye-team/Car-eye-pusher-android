@@ -88,7 +88,7 @@ public class Constants {
 	public static int[] CAMERA_ID = {0,1,5,6};
 	/**录像状态 true录像中 false 未录像*/
 	public static boolean CAMERA_RECORD[] = {false,false,false,false};
-	public static final String Default_URL = "rtsp://www.car-eye.cn:10554/13510671870?channel=1";
+	public static final String Default_URL = "rtsp://www.car-eye.cn:10554/13510671870&channel=1.sdp";
 	/**
 	 * 设置参数	 */
 	public static void setParam(Context context){

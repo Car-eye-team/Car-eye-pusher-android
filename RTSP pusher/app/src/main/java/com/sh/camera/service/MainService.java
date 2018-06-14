@@ -53,6 +53,7 @@ import org.push.push.Pusher;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import android.widget.TextView;
 
 @SuppressLint("NewApi")
 @SuppressWarnings("unused")
@@ -113,7 +114,8 @@ public class MainService extends Service {
 	boolean sd_inject = false;
 	private Button btn_app_minimize,btn_app_exit;
 	private FrameLayout   inc_alertaui;
-
+	private FrameLayout   inc_url;
+	private TextView  text_url;
 	// 获取本地application的对象
 	private boolean isTabletDevice = true;
 	public static MainService getInstance() {
@@ -122,7 +124,6 @@ public class MainService extends Service {
 		}
 		return instance;
 	}	
-
 
 	@Override
 	public void onCreate() {
@@ -466,6 +467,9 @@ public class MainService extends Service {
 		for (int i = 0; i < Constants.MAX_NUM_OF_CAMERAS; i++) {
 			initPreview(i);
 		}
+		inc_url = (FrameLayout) view.findViewById(R.id.inc_url);
+		text_url = (TextView) view.findViewById(R.id.text_url);
+
 	}
 	/**
 	 * 初始化预览
@@ -618,6 +622,7 @@ public class MainService extends Service {
 
 				clickLock = true;
 				TakePictureAll(1);
+				clickLock = true;
 				break;
 			case R.id.bt_ly_2://录像
 			case R.id.bt_ly_2_bottom://录像
@@ -642,6 +647,7 @@ public class MainService extends Service {
 			case R.id.bt_ly_3_bottom://上传
 				clickLock = true;
 				if (isSC) {
+					inc_url.setVisibility(View.GONE);
 					stopSC();
 				} else {
 					//处理上传
@@ -722,27 +728,22 @@ public class MainService extends Service {
 			Toast.makeText(MainService.getInstance(), "请修改设备名", 1000).show();
 		}
 		try {
-			
-			if(camera[index]!=null){
-				AsyncTask.execute(new Runnable() {
-					@Override
-					public void run() {	      
-				//初始化推流工具
-						m_index_channel = mPusher.CarEyeInitNetWorkRTSP( getApplicationContext(),ipstr, portstr, String.format("%s?channel=%d.sdp",serialno,CameraId), Constants.CAREYE_VCODE_H264,20,Constants.CAREYE_ACODE_AAC,1,8000);
-				//控制预览回调
-						if(m_index_channel < 0)
-						{
-							Log.d("CMD", " init error, error number"+m_index_channel);
-							//Toast.makeText(MainService.getInstance(), "链接服务器失败："+m_index_channel, 1000).show();
-							return;
-						}
-						CameraUtil.VIDEO_UPLOAD[index] = true;
-						StreamIndex[index] = m_index_channel;
-						MediaCodecManager.getInstance().StartUpload(index,camera[index]);
-						camera[index].setPreviewCallback(preview[index]);
-					}
-				});
+			m_index_channel = mPusher.CarEyeInitNetWorkRTSP( getApplicationContext(),ipstr, portstr, String.format("%s&channel=%d.sdp",serialno,CameraId), Constants.CAREYE_VCODE_H264,20,Constants.CAREYE_ACODE_AAC,1,8000);
+	//控制预览回调
+			if(m_index_channel < 0)
+			{
+				Log.d("CMD", " init error, error number"+m_index_channel);
+				//Toast.makeText(MainService.getInstance(), "链接服务器失败："+m_index_channel, 1000).show();
+				return;
 			}
+			CameraUtil.VIDEO_UPLOAD[index] = true;
+			StreamIndex[index] = m_index_channel;
+			MediaCodecManager.getInstance().StartUpload(index,camera[index]);
+			camera[index].setPreviewCallback(preview[index]);
+			inc_url.setVisibility(View.VISIBLE);
+			//text_url.setText("rtmp://"+ipstr+":"+portstr+"/"+Constants.RTMP_APP+"/"+Constants.STREAM_NAME+"&channel="+CameraId);
+			text_url.setText(ServerManager.getInstance().getURL());
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -857,8 +858,7 @@ public class MainService extends Service {
 			mrs[index].setOnErrorListener(new MediaRecorderErrorListener(index));		
 			generateVideoFilename(index, MediaRecorder.OutputFormat.MPEG_4 );
 			mrs[index].setOutputFile( MrTempName[index]);			
-			Log.d("CMD", "generate filename"+MrTempName[index]);	
-			mrs[index].prepare(); 
+	  		mrs[index].prepare();
 			mrs[index].start(); 
 			Constants.CAMERA_RECORD[index] = true;
 		} catch (Exception e) { 

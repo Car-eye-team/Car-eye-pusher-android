@@ -88,7 +88,7 @@ public class SetActivity extends Activity {
 			@Override
 			public void afterTextChanged(Editable editable) {
 				Log.d("CMD", "afterTextChanged 被执行---->" + editable);
-				et5.setText("rtsp://"+editable+":"+et2.getText()+"/"+et3.getText()+"?channel=1.sdp");
+				et5.setText("rtsp://"+editable+":"+et2.getText()+"/"+et3.getText()+"&channel=1.sdp");
 			}
 		});
 		et2.addTextChangedListener(new TextWatcher()
@@ -102,7 +102,7 @@ public class SetActivity extends Activity {
 			@Override
 			public void afterTextChanged(Editable editable) {
 				Log.d("CMD", "afterTextChanged 被执行---->" + editable);
-				et5.setText("rtsp://"+et1.getText()+":"+editable+"/"+et3.getText()+"?channel=1.sdp");
+				et5.setText("rtsp://"+et1.getText()+":"+editable+"/"+et3.getText()+"&channel=1.sdp");
 			}
 		});
 
@@ -117,7 +117,7 @@ public class SetActivity extends Activity {
 			@Override
 			public void afterTextChanged(Editable editable) {
 				Log.d("CMD", "afterTextChanged 被执行---->" + editable);
-				et5.setText("rtsp://"+et1.getText()+":"+et2.getText()+"/"+editable+"?channel=1.sdp");
+				et5.setText("rtsp://"+et1.getText()+":"+et2.getText()+"/"+editable+"&channel=1.sdp");
 			}
 		});
 
