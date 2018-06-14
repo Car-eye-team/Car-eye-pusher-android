@@ -100,7 +100,7 @@ public class MainService extends Service {
 	public static SurfaceTextureListener[] stListener;
 	//记录当前录制视屏的起点，未录制时-1；
 	long recoTime = -1;
-	private int[] ttvids = {R.id.textureview1};
+	private int[] ttvids = {R.id.tv_one};
 	private ImageView btiv1,btiv2;
 	private LinearLayout[] lys;
 	private int[] lyids = {R.id.ly_1_0, R.id.ly_1_1};
@@ -406,14 +406,14 @@ public class MainService extends Service {
 		public void handleMessage(android.os.Message msg) {
 			if(msg.what==1001){
 				boolean lock = false;
-				Toast.makeText(c, "执行拍照成功", 1000).show();
+				Toast.makeText(c, "执行拍照成功", Toast.LENGTH_LONG * 1000).show();
 				if(!lock){
 					clickLock = false;
 				}
 			}
 			if(msg.what==1003){
 				boolean lock = false;
-				Toast.makeText(c, "执行拍照失败", 1000).show();
+				Toast.makeText(c, "执行拍照失败", Toast.LENGTH_LONG * 1000).show();
 				if(!lock){
 					clickLock = false;
 				}
@@ -520,7 +520,7 @@ public class MainService extends Service {
 	}
 	/**
 	 * 关闭释放摄像头
-	 * @param i
+	 * @param @i
 	 */
 	public void colseCamera(int index){
 		try {			
@@ -556,7 +556,7 @@ public class MainService extends Service {
 	}	
 	/**
 	 * 打开摄像头并预览
-	 * @param i
+	 * @param @i
 	 * @param type 1 正常启动  2 重启
 	 */
 	public void openCamera(int index,int type){
@@ -638,9 +638,9 @@ public class MainService extends Service {
 			case R.id.bt_ly_1://拍照
 			case R.id.bt_ly_1_bottom://拍照
 				//检查SD卡是否存在
-
 				clickLock = true;
 				TakePictureAll(1);
+				clickLock = false;
 				break;
 			case R.id.bt_ly_2://录像
 			case R.id.bt_ly_2_bottom://录像
@@ -743,33 +743,30 @@ public class MainService extends Service {
 		}	
 		if(serialno.equals(Constants.STREAM_NAME))
 		{
-			Toast.makeText(MainService.getInstance(), "请修改设备名", 1000).show();
+			Toast.makeText(MainService.getInstance(), "请修改设备名", Toast.LENGTH_LONG * 1000).show();
 		}
 		try {
-			
+
 			if(camera[index]!=null){
-				AsyncTask.execute(new Runnable() {
-					@Override
-					public void run() {	      
-				//初始化推流工具
-						m_index_channel = mPusher.CarEyeInitNetWorkRTMP( getApplicationContext(),ipstr, portstr, String.format("%s/%s&channel=%d",app,serialno,CameraId), Constants.CAREYE_VCODE_H264,20,Constants.CAREYE_ACODE_AAC,1,8000);
-				//控制预览回调
-						if(m_index_channel < 0)
-						{
-							Log.d("CMD", " init error, error number"+m_index_channel);
-							//Toast.makeText(MainService.getInstance(), "链接服务器失败："+m_index_channel, 1000).show();
-							return;
-						}
-						CameraUtil.VIDEO_UPLOAD[index] = true;
-						StreamIndex[index] = m_index_channel;
-						MediaCodecManager.getInstance().StartUpload(index,camera[index]);
-						camera[index].setPreviewCallback(preview[index]);
+
+			//初始化推流工具
+					m_index_channel = mPusher.CarEyeInitNetWorkRTMP( getApplicationContext(),ipstr, portstr, String.format("%s/%s&channel=%d",app,serialno,CameraId), Constants.CAREYE_VCODE_H264,20,Constants.CAREYE_ACODE_AAC,1,8000);
+			//控制预览回调
+					if(m_index_channel < 0)
+					{
+						Log.d("CMD", " init error, error number"+m_index_channel);
+						//Toast.makeText(MainService.getInstance(), "链接服务器失败："+m_index_channel, 1000).show();
+						return;
 					}
-				});
+					CameraUtil.VIDEO_UPLOAD[index] = true;
+					StreamIndex[index] = m_index_channel;
+					MediaCodecManager.getInstance().StartUpload(index,camera[index]);
+					camera[index].setPreviewCallback(preview[index]);
+				}
 				inc_url.setVisibility(View.VISIBLE);
 				//text_url.setText("rtmp://"+ipstr+":"+portstr+"/"+Constants.RTMP_APP+"/"+Constants.STREAM_NAME+"&channel="+CameraId);
 				text_url.setText(ServerManager.getInstance().getURL());
-			}
+
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -812,7 +809,7 @@ public class MainService extends Service {
 	}
 	/**
 	 * 开始录像
-	 * @param index
+	 * @param @index
 	 */
 	private  String convertOutputFormatToFileExt(int outputFileFormat) {
 		if (outputFileFormat == MediaRecorder.OutputFormat.MPEG_4) {
