@@ -28,7 +28,7 @@ import com.sh.camera.util.Constants;
  * Created by apple on 2017/5/13.
  */
 public class HWConsumer extends Thread implements VideoConsumer {
-    @Nullable
+
     public Muxer mMuxer;
     private static final String TAG = "CMD";
     private final Context mContext;
@@ -103,6 +103,7 @@ public class HWConsumer extends Thread implements VideoConsumer {
 		}
         return 0;
     }
+    @SuppressLint("WrongConstant")
     @Override
     public void run(){
         MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
@@ -127,8 +128,8 @@ public class HWConsumer extends Thread implements VideoConsumer {
                 // let's ignore it
             } else {
                 ByteBuffer outputBuffer;
-                
-                outputBuffer = outputBuffers[outputBufferIndex];        
+
+                outputBuffer = outputBuffers[outputBufferIndex];
                 Muxer muxer = mMuxer;
                 if (muxer != null) {
                     muxer.pumpStream(outputBuffer, bufferInfo, true);
@@ -150,15 +151,15 @@ public class HWConsumer extends Thread implements VideoConsumer {
                 int len = mPpsSps.length + bufferInfo.size;
                 if (len > h264.length){
                     h264 = new byte[len];
-                }                
+                }
                 if (sync) {
                     System.arraycopy(mPpsSps, 0, h264, 0, mPpsSps.length);
                     outputBuffer.get(h264, mPpsSps.length, bufferInfo.size);
                     mPusher.SendBuffer_org( h264,  mPpsSps.length + bufferInfo.size, (bufferInfo.presentationTimeUs / 1000),0, m_index);
              	 }else{
                     outputBuffer.get(h264, 0, bufferInfo.size);
-                    mPusher.SendBuffer_org( h264,  bufferInfo.size,  (bufferInfo.presentationTimeUs / 1000), 0, m_index);                  
-                }                
+                    mPusher.SendBuffer_org( h264,  bufferInfo.size,  (bufferInfo.presentationTimeUs / 1000), 0, m_index);
+                }
                 mMediaCodec.releaseOutputBuffer(outputBufferIndex, false);
             }
         }

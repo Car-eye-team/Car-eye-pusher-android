@@ -1,14 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 20
-    buildToolsVersion "27.0.3"
+
+    //compileSdkVersion 20
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+
+    useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
         applicationId "com.sh.RTMP_Pusher"
+        vectorDrawables.useSupportLibrary = true
         minSdkVersion 16
-        targetSdkVersion 21
+	//targetSdkVersion 21
+        targetSdkVersion 26
     }
+
+
 
     buildTypes {
         release {
@@ -16,9 +24,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:20.0.0'
+    //compile 'com.android.support:support-v4:20.0.0'
+    compile 'com.android.support:appcompat-v7:26+'
     compile 'com.google.code.gson:gson:2.2.1'
 }

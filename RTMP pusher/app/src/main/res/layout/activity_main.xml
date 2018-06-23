@@ -30,10 +30,9 @@
                 android:orientation="vertical" >
 
                 <TextureView
-                    android:id="@+id/textureview1"
+                    android:id="@+id/tv_one"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#338fcc" />
+                    android:layout_height="match_parent"/>
             </LinearLayout>
 
             <LinearLayout
@@ -45,10 +44,9 @@
                 android:visibility="gone" >
 
                 <TextureView
-                    android:id="@+id/textureview2"
+                    android:id="@+id/tv_two"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#338fcc" />
+                    android:layout_height="match_parent" />
             </LinearLayout>
         </LinearLayout>
 
@@ -67,10 +65,9 @@
                 android:orientation="vertical" >
 
                 <TextureView
-                    android:id="@+id/textureview3"
+                    android:id="@+id/tv_three"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#338fcc" />
+                    android:layout_height="match_parent"/>
             </LinearLayout>
 
             <LinearLayout
@@ -83,8 +80,7 @@
                 <TextureView
                     android:id="@+id/textureview4"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#338fcc" />
+                    android:layout_height="match_parent"/>
             </LinearLayout>
         </LinearLayout>
         <!-- 底部选项 1 s -->
