@@ -16,6 +16,8 @@ car-push-android 是car-eye开源团队开发的一个推送程序demo。程序�
 
 ![](https://github.com/Car-eye-team/Car-eye-pusher-android/blob/master/%E6%8E%A8%E6%B5%81/pusher.jpg)
 
+图上的按钮功能依次为：拍照，录像，上传，打开历史记录，设置和返回
+
 
 ## 库接口说明
 
