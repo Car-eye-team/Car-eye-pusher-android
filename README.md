@@ -4,14 +4,11 @@ car-push-android 是car-eye开源团队开发的一个推送程序demo。程序�
 
 ## 工作原理
 
-Car-eye-pusher RTSP 和RTMP 各个版本通过摄像头采集数据，将数据流发送到服务器，然后在通过car-eye-player或者第三方播放器进行播放   
+Car-eye-pusher RTSP 和RTMP 各个版本通过摄像头采集数据，将数据流发送到服务器，然后在通过car-eye-player或者第三方播放器进行播放
 推流器的主要特点是稳定性好，延迟少，非常适合监控，医疗，教育等行业
 ![](https://github.com/Car-eye-team/Car-eye-pusher-android/blob/master/%E6%8E%A8%E6%B5%81/pusher-machine.png)
 
 ## 功能说明
-
-
-
 目前支持的功能有：
 
 * 录像和拍照
