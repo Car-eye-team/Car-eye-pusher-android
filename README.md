@@ -14,7 +14,7 @@ car-push-android 是car-eye开源团队开发的一个推送程序demo。程序�
 
 ## 界面展示
 
-![](https://github.com/Car-eye-team/Car-eye-device/blob/master/picture/car-eye-camera%E4%B8%BB%E7%95%8C%E9%9D%A2.png)
+![](https://github.com/Car-eye-team/Car-eye-pusher-android/blob/master/%E6%8E%A8%E6%B5%81/pusher.jpg)
 
 
 ## 库接口说明
