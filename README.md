@@ -114,6 +114,16 @@ channel：通道号
 Result:返回码，一般为结束或者错误码      
 
 
+# 软件下载
+
+Car-eye-RTMP-pusher android版本下载地址：https://fir.im/wmdr
+
+扫描二维码下载   
+
+![](https://github.com/Car-eye-team/Car-eye-pusher-android/blob/master/%E6%8E%A8%E6%B5%81/pusher.jpg)
+
+
+
 # 联系我们     
 
 car-eye开源官方网址：www.car-eye.cn       
