@@ -116,11 +116,13 @@ Result:返回码，一般为结束或者错误码
 
 # 软件下载
 
-Car-eye-RTMP-pusher android版本下载地址：https://fir.im/wmdr
+Car-eye-rtmp-pusher android版本下载地址：https://fir.im/wmdr
 
 扫描二维码下载   
 
 ![](https://github.com/Car-eye-team/Car-eye-pusher-android/blob/master/%E6%8E%A8%E6%B5%81/RTMP-PUSHER-%E4%BA%8C%E7%BB%B4%E7%A0%81.png)
+
+car-eye-rtsp-pusher android版本下载地址：https://fir.im/ewu2
 
 
 
