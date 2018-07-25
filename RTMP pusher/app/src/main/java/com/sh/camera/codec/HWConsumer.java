@@ -79,7 +79,6 @@ public class HWConsumer extends Thread implements VideoConsumer {
         	Log.d(TAG, " onVideo not ready ");
         	return 0;
         }
-              
         data = mVideoConverter.convert(data);
         if(Constants.filter == true && Constants.ffmpeg == true)
         {
@@ -156,7 +155,7 @@ public class HWConsumer extends Thread implements VideoConsumer {
                     System.arraycopy(mPpsSps, 0, h264, 0, mPpsSps.length);
                     outputBuffer.get(h264, mPpsSps.length, bufferInfo.size);
                     mPusher.SendBuffer_org( h264,  mPpsSps.length + bufferInfo.size, (bufferInfo.presentationTimeUs / 1000),0, m_index);
-             	 }else{
+                     }else{
                     outputBuffer.get(h264, 0, bufferInfo.size);
                     mPusher.SendBuffer_org( h264,  bufferInfo.size,  (bufferInfo.presentationTimeUs / 1000), 0, m_index);
                 }
@@ -207,7 +206,7 @@ Video bitrate 384 Kbps 2 Mbps 4 Mbps 10 Mbps
 //        } else {
 //            bitrate = 2 * width * height;
 //        }
-        int bitrate = (int) (mWidth*mHeight*20*2*0.07f);
+        int bitrate = (int) (mWidth*mHeight*20*2*0.05f);
        // int bitrate = 2 * mWidth * mHeight / 3;
         
         EncoderDebugger debugger = EncoderDebugger.debug(mContext, mWidth, mHeight);

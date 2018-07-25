@@ -108,6 +108,11 @@ public class AudioStream {
                         if (bufferIndex >= 0) {
                             inputBuffers[bufferIndex].clear();
                             len = mAudioRecord.read(inputBuffers[bufferIndex], BUFFER_SIZE);
+                            if(easyPusher.CarEyePusherIsReadyRTMP(m_index)==0)
+                            {
+                                //Log.d(TAG, "  not ready ");
+                                continue;
+                            }
                             if (len == AudioRecord.ERROR_INVALID_OPERATION || len == AudioRecord.ERROR_BAD_VALUE) {
                                 mMediaCodec.queueInputBuffer(bufferIndex, 0, 0, System.nanoTime() / 1000, 0);
                             } else {
