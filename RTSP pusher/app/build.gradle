@@ -8,6 +8,9 @@ android {
         applicationId "com.sh.RTSP_Pusher"
         minSdkVersion 16
         targetSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0.18.8.5"
     }
 
     buildTypes {
@@ -21,4 +24,5 @@ android {
 dependencies {
     compile 'com.android.support:support-v4:20.0.0'
     compile 'com.google.code.gson:gson:2.2.1'
+    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
 }

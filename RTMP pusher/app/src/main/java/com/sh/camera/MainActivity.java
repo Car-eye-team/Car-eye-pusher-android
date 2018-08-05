@@ -21,7 +21,8 @@ import com.sh.RTMP_Pusher.R;
 import com.sh.camera.permission.FloatWindowManager;
 import com.sh.camera.service.MainService;
 import com.sh.camera.util.Constants;
-
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
 
 
 public class MainActivity extends Activity {
@@ -36,6 +37,8 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle arg0) {
 		// TODO Auto-generated method stub
 		super.onCreate(arg0);
+		Bugly.init(getApplicationContext(), "9c4b0e3ce3", false);
+		Beta.checkUpgrade(false,false);
 		Log.d("-------------------", "MainActivity onCreate" );
 		Constants.setParam(this);
 		int version = android.os.Build.VERSION.SDK_INT;
