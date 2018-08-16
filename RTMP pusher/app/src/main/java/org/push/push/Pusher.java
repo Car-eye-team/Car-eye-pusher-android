@@ -34,16 +34,15 @@ public class Pusher {
 	private ByteBuffer directbuffer;
 	
 	private Handler handle =null;	
-	public native int    CarEyeInitNetWorkRTMP(Context context,String serverIP, String serverPort, String streamName, int videoformat, int fps,int audioformat, int audiochannel, int audiosamplerate);
-	public native int 	 CarEyePusherIsReadyRTMP(int channel);
+	public native int    CarEyeInitNetWorkRTMP(Context context,String key,String serverIP, String serverPort, String streamName, int videoformat, int fps,int audioformat, int audiochannel, int audiosamplerate);
+	public native int    CarEyePusherIsReadyRTMP(int channel);
 	public native long   CarEyeSendBufferRTMP(long time, byte[] data, int lenth, int type, int channel);	
 	public native int    CarEyeStopNativeFileRTMP(int channel);	
-	public native int    CarEyeStartNativeFileRTMPEX(Context context, String serverIP, String serverPort, String streamName,  String fileName,int start, int end);
+	public native int    CarEyeStartNativeFileRTMPEX(Context context, String key, String serverIP, String serverPort, String streamName,  String fileName,int start, int end);
 
 	// result： 0 文件传输结束  , 传输出错
 	
-	public void  CarEyeCallBack(int channel, int Result){		
-		
+	public void  CarEyeCallBack(int channel, int Result){
 		Log.e("puser", "exit send file!");	
 		if(handle != null){
 			handle.sendMessage(handle.obtainMessage(1006));
@@ -104,13 +103,13 @@ public class Pusher {
 
 		//StartNativeFileRTSP(serverIP,serverPort,streamName, fileName);
 		handle = handler;
-		int channel =  CarEyeStartNativeFileRTMPEX(MainService.application, serverIP,serverPort,streamName, fileName,splaysec,eplaysec);
+		int channel =  CarEyeStartNativeFileRTMPEX(MainService.application, Constants.Key,serverIP,serverPort,streamName, fileName,splaysec,eplaysec);
 		return channel;				
 				
 	}
 	public void startfilestream(final String serverIP, final String serverPort, final String streamName, final String filePath){
 
-		CarEyeStartNativeFileRTMPEX(MainService.application,serverIP,serverPort,streamName, filePath,0,0);
+		CarEyeStartNativeFileRTMPEX(MainService.application,Constants.Key,serverIP,serverPort,streamName,filePath,0,0);
 		Log.e("puser", "exit send file!");
 		//CameraUtil.stopVideoFileStream();
 	}

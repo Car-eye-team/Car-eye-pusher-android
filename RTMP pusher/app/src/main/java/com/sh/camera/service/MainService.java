@@ -750,7 +750,7 @@ public class MainService extends Service {
 			if(camera[index]!=null){
 
 			//初始化推流工具
-					m_index_channel = mPusher.CarEyeInitNetWorkRTMP( getApplicationContext(),ipstr, portstr, String.format("%s/%s&channel=%d",app,serialno,CameraId), Constants.CAREYE_VCODE_H264,20,Constants.CAREYE_ACODE_AAC,1,8000);
+					m_index_channel = mPusher.CarEyeInitNetWorkRTMP( getApplicationContext(),Constants.Key,ipstr, portstr, String.format("%s/%s&channel=%d",app,serialno,CameraId), Constants.CAREYE_VCODE_H264,20,Constants.CAREYE_ACODE_AAC,1,8000);
 			//控制预览回调
 					if(m_index_channel < 0)
 					{

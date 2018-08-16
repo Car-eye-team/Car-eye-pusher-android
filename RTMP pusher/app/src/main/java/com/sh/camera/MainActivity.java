@@ -25,6 +25,7 @@ import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 
 
+
 public class MainActivity extends Activity {
 	public static MainActivity mainactivity;
 	private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -37,12 +38,12 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle arg0) {
 		// TODO Auto-generated method stub
 		super.onCreate(arg0);
-		Bugly.init(getApplicationContext(), "9c4b0e3ce3", false);
-		Beta.checkUpgrade(false,false);
 		Log.d("-------------------", "MainActivity onCreate" );
 		Constants.setParam(this);
 		int version = android.os.Build.VERSION.SDK_INT;
 		Log.d("CMD", "version : " + version);
+		Bugly.init(getApplicationContext(), "9c4b0e3ce3", false);
+		Beta.checkUpgrade(false,false);
 		setContentView(R.layout.activity_splash);
 		/*listener=new FloatWindowManager.MyListener() {
 			@Override
@@ -86,8 +87,8 @@ public class MainActivity extends Activity {
 	}
 
 	public void applypermission(){
+		boolean needapplypermission=false;
 		if(Build.VERSION.SDK_INT>=23){
-			boolean needapplypermission=false;
 			for(int i=0; i < PERMISSIONS_STORAGE.length ; i++){
 				int chechpermission= ContextCompat.checkSelfPermission(getApplicationContext(),
 						PERMISSIONS_STORAGE[i]);
@@ -100,6 +101,8 @@ public class MainActivity extends Activity {
 			}else{
 				gotoService();
 			}
+		}else {
+			gotoService();
 		}
 	}
 
