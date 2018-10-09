@@ -34,10 +34,10 @@ public class Pusher {
 	private ByteBuffer directbuffer;
 	
 	private Handler handle =null;	
-	public native int    CarEyeInitNetWorkRTMP(Context context,String key,String serverIP, String serverPort, String streamName, int videoformat, int fps,int audioformat, int audiochannel, int audiosamplerate);
-	public native int    CarEyePusherIsReadyRTMP(int channel);
-	public native long   CarEyeSendBufferRTMP(long time, byte[] data, int lenth, int type, int channel);	
-	public native int    CarEyeStopNativeFileRTMP(int channel);	
+	public native long    CarEyeInitNetWorkRTMP(Context context,String key,String serverIP, String serverPort, String streamName, int videoformat, int fps,int audioformat, int audiochannel, int audiosamplerate);
+	public native int    CarEyePusherIsReadyRTMP(long handle);
+	public native long   CarEyeSendBufferRTMP(long time, byte[] data, int lenth, int type, long handle);
+	public native int    CarEyeStopNativeFileRTMP(long handle);
 	public native int    CarEyeStartNativeFileRTMPEX(Context context, String key, String serverIP, String serverPort, String streamName,  String fileName,int start, int end);
 
 	// result： 0 文件传输结束  , 传输出错
@@ -65,22 +65,22 @@ public class Pusher {
 	 * 停止发送
 	 * @param index
 	 */
-	public native void  CarEyeStopPushNetRTMP(int index);   
+	public native void  CarEyeStopPushNetRTMP(long index);
 	
-	public  long SendBuffer_org(final byte[] data,final int length, final long timestamp, final int type, final int index)
+	public  long SendBuffer_org(final byte[] data,final int length, final long timestamp, final int type, final long handle)
 	{
 		long ret;
 		//Log.e("puser", "timestamp:"+timestamp+"length:"+length);	
-		ret =  CarEyeSendBufferRTMP(timestamp, data,length,type,index);		
+		ret =  CarEyeSendBufferRTMP(timestamp, data,length,type,handle);
 		return ret;
 		
 	}	
-	public  void stopPush(final int  index)
+	public  void stopPush(final long  handle)
 	{
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				 CarEyeStopPushNetRTMP(index);
+				 CarEyeStopPushNetRTMP(handle);
 			}
 		}).start();
 	}

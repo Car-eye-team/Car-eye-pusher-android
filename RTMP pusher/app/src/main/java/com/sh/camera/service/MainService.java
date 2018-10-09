@@ -104,7 +104,7 @@ public class MainService extends Service {
 	private ImageView btiv1,btiv2;
 	private LinearLayout[] lys;
 	private int[] lyids = {R.id.ly_1_0, R.id.ly_1_1};
-	public static int[] StreamIndex;
+	public static long[] StreamIndex;
 	public static boolean clickLock = false;
 	int framerate = Constants.FRAMERATE;
 	int bitrate;
@@ -137,7 +137,7 @@ public class MainService extends Service {
 		c = MainService.this;
 		application = getApplicationContext();
 		mPusher = new Pusher();
-		StreamIndex = new int[Constants.MAX_NUM_OF_CAMERAS];
+		StreamIndex = new long[Constants.MAX_NUM_OF_CAMERAS];
 		camera = new Camera[Constants.MAX_NUM_OF_CAMERAS];
 		mrs = new MediaRecorder[Constants.MAX_NUM_OF_CAMERAS];
 		MrTempName = new String[Constants.MAX_NUM_OF_CAMERAS];
@@ -734,7 +734,9 @@ public class MainService extends Service {
 	{
 		camera.setPreviewCallback(preview[index]);	
 	}	
-	int m_index_channel;
+	long  m_index_channel;
+
+
 	public void startVideoUpload2(final String ipstr,final String portstr, final String app, final String serialno, final int index){
 		final int CameraId;
 		CameraId = index+1;
