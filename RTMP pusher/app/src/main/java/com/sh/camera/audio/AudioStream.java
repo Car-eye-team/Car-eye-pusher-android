@@ -32,7 +32,7 @@ public class AudioStream {
     int mSamplingRateIndex = 0;
     AudioRecord mAudioRecord;
     MediaCodec mMediaCodec;
-    private int m_index;
+    private long handle;
     Pusher easyPusher;
     private Thread mThread = null;
     String TAG = "audio_stream";
@@ -62,10 +62,10 @@ public class AudioStream {
             -1, // 15
     };
 
-    public AudioStream(Pusher m_Pusher, Muxer muxer, int index) {
+    public AudioStream(Pusher m_Pusher, Muxer muxer, long hanlde) {
         this.easyPusher = m_Pusher;
         this.muxer = muxer;
-        m_index = index;
+        handle = hanlde;
         int i = 0;
         for (; i < AUDIO_SAMPLING_RATES.length; i++) {
             if (AUDIO_SAMPLING_RATES[i] == samplingRate) {
@@ -108,7 +108,7 @@ public class AudioStream {
                         if (bufferIndex >= 0) {
                             inputBuffers[bufferIndex].clear();
                             len = mAudioRecord.read(inputBuffers[bufferIndex], BUFFER_SIZE);
-                            if(easyPusher.CarEyePusherIsReadyRTMP(m_index)==0)
+                            if(easyPusher.CarEyePusherIsReadyRTMP(handle)==0)
                             {
                                 //Log.d(TAG, "  not ready ");
                                 continue;
@@ -135,7 +135,7 @@ public class AudioStream {
                                 mBuffer.position(7 + mBufferInfo.size);
                                 addADTStoPacket(mBuffer.array(), mBufferInfo.size + 7);
                                 mBuffer.flip();
-                                easyPusher.SendBuffer_org(mBuffer.array(), mBufferInfo.size + 7, mBufferInfo.presentationTimeUs / 1000, 1, m_index);	                                            
+                                easyPusher.SendBuffer_org(mBuffer.array(), mBufferInfo.size + 7, mBufferInfo.presentationTimeUs / 1000, 1, handle);
 	                            mMediaCodec.releaseOutputBuffer(index, false);
 	                            break;
 	                            

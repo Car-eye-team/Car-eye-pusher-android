@@ -734,7 +734,7 @@ public class MainService extends Service {
 	{
 		camera.setPreviewCallback(preview[index]);	
 	}	
-	long  m_index_channel;
+	long  handle;
 
 
 	public void startVideoUpload2(final String ipstr,final String portstr, final String app, final String serialno, final int index){
@@ -752,17 +752,18 @@ public class MainService extends Service {
 			if(camera[index]!=null){
 
 			//初始化推流工具
-					m_index_channel = mPusher.CarEyeInitNetWorkRTMP( getApplicationContext(),Constants.Key,ipstr, portstr, String.format("%s/%s&channel=%d",app,serialno,CameraId), Constants.CAREYE_VCODE_H264,20,Constants.CAREYE_ACODE_AAC,1,8000);
+				handle = mPusher.CarEyeInitNetWorkRTMP( getApplicationContext(),Constants.Key,ipstr, portstr, String.format("%s/%s&channel=%d",app,serialno,CameraId), Constants.CAREYE_VCODE_H264,20,Constants.CAREYE_ACODE_AAC,1,8000);
 			//控制预览回调
-					if(m_index_channel < 0)
+					if(handle < 0)
 					{
-						Log.d("CMD", " init error, error number"+m_index_channel);
+						Log.d("CMD", " init error, error number"+handle);
 						//Toast.makeText(MainService.getInstance(), "链接服务器失败："+m_index_channel, 1000).show();
 						return;
 					}
 					CameraUtil.VIDEO_UPLOAD[index] = true;
-					StreamIndex[index] = m_index_channel;
-					MediaCodecManager.getInstance().StartUpload(index,camera[index]);
+					StreamIndex[index] = handle;
+					Log.d("CMD", " init sucessful"+handle);
+					MediaCodecManager.getInstance().StartUpload(index,camera[index],handle);
 					camera[index].setPreviewCallback(preview[index]);
 				}
 				inc_url.setVisibility(View.VISIBLE);
