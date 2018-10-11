@@ -754,7 +754,7 @@ public class MainService extends Service {
 			//初始化推流工具
 				handle = mPusher.CarEyeInitNetWorkRTMP( getApplicationContext(),Constants.Key,ipstr, portstr, String.format("%s/%s&channel=%d",app,serialno,CameraId), Constants.CAREYE_VCODE_H264,20,Constants.CAREYE_ACODE_AAC,1,8000);
 			//控制预览回调
-					if(handle < 0)
+					if(handle ==0)
 					{
 						Log.d("CMD", " init error, error number"+handle);
 						//Toast.makeText(MainService.getInstance(), "链接服务器失败："+m_index_channel, 1000).show();
