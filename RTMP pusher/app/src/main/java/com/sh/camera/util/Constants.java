@@ -37,7 +37,7 @@ public class Constants {
 	/**上传视频宽度*/
 	public static final int UPLOAD_VIDEO_WIDTH = 640;
 	/**上传视频高度*/
-	public static final int UPLOAD_VIDEO_HEIGHT = 480;	
+	public static final int UPLOAD_VIDEO_HEIGHT = 480;
 	/**录制视频宽度*/
 	public static final int RECORD_VIDEO_WIDTH = 640;
 	/**录制视频高度*/

@@ -113,7 +113,7 @@ public class AudioStream {
                                 //Log.d(TAG, "  not ready ");
                                 continue;
                             }
-                            if (len == AudioRecord.ERROR_INVALID_OPERATION || len == AudioRecord.ERROR_BAD_VALUE) {
+                                if (len == AudioRecord.ERROR_INVALID_OPERATION || len == AudioRecord.ERROR_BAD_VALUE) {
                                 mMediaCodec.queueInputBuffer(bufferIndex, 0, 0, System.nanoTime() / 1000, 0);
                             } else {
                                 mMediaCodec.queueInputBuffer(bufferIndex, 0, len, System.nanoTime() / 1000, 0);

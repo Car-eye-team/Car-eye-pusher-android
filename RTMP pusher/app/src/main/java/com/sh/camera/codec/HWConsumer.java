@@ -59,49 +59,61 @@ public class HWConsumer extends Thread implements VideoConsumer {
         this.mWidth = width;
         this.mHeight = height;
         startMediaCodec();
-        inputBuffers = mMediaCodec.getInputBuffers();
-        outputBuffers = mMediaCodec.getOutputBuffers();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP + 1) {
+            inputBuffers = outputBuffers = null;
+        } else {
+            inputBuffers = mMediaCodec.getInputBuffers();
+            outputBuffers = mMediaCodec.getOutputBuffers();
+        }
         start();
         mVideoStarted = true;
         if(Constants.filter == true && Constants.ffmpeg == true)
         {
               m_filter = m_ffmpeg.InitOSD(width,height, 10, 10,28, 0x00ff00, mContext.getFileStreamPath("msyh.ttf").getAbsolutePath(),"test");
               Log.d(TAG, "write data sucessful:"+mContext.getFileStreamPath("msyh.ttf").getAbsolutePath());
-
         }
     }
-    //final int millisPerframe = 1000/25;
+    final int millisPerframe = 1000 / 20;
     long lastPush = 0;
+
     @Override
     public int onVideo(byte[] data, int format) {
         if (!mVideoStarted)return 0;
 
         if(mPusher.CarEyePusherIsReadyRTMP(m_handle)==0)
         {
-        	Log.d(TAG, " onVideo not ready ");
-        	return 0;
-        }
-        data = mVideoConverter.convert(data);
-        if(Constants.filter == true && Constants.ffmpeg == true)
-        {
-            if(m_filter!=0)
-            {
-                String txt = "Car-eye-pusher:" + new SimpleDateFormat("yy-MM-dd HH:mm:ss SSS").format(new Date());
-                int result = m_ffmpeg.blendOSD(m_filter,data,txt);
+            Log.d(TAG, " onVideo not ready ");
+            return 0;
             }
+       data = mVideoConverter.convert(data);
+        try {
+            if (lastPush == 0) {
+                lastPush = System.currentTimeMillis();
+            }
+            long time = System.currentTimeMillis() - lastPush;
+            if (time >= 0) {
+                time = millisPerframe - time;
+                if (time > 0) Thread.sleep(time / 2);
+            }
+            int bufferIndex = mMediaCodec.dequeueInputBuffer(0);
+            if (bufferIndex >= 0) {
+                ByteBuffer buffer = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    buffer = mMediaCodec.getInputBuffer(bufferIndex);
+                } else {
+                    buffer = inputBuffers[bufferIndex];
+                }
+                buffer.clear();
+                buffer.put(data);
+                buffer.clear();
+                mMediaCodec.queueInputBuffer(bufferIndex, 0, data.length, System.nanoTime() / 1000, MediaCodec.BUFFER_FLAG_KEY_FRAME);
+            }
+            if (time > 0) Thread.sleep(time / 2);
+            lastPush = System.currentTimeMillis();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
         }
-		inputBuffers = mMediaCodec.getInputBuffers();
-		outputBuffers = mMediaCodec.getOutputBuffers();
-        int bufferIndex = mMediaCodec.dequeueInputBuffer(0);        
-       // MainService.mEasyPusher.addwatermarkScale(data, Scaler, data.length,Constants.RECORD_VIDEO_WIDTH,Constants.RECORD_VIDEO_HEIGHT,Constants.UPLOAD_VIDEO_WIDTH,Constants.UPLOAD_VIDEO_HEIGHT);
-		if (bufferIndex >= 0) {
-		    ByteBuffer buffer = null;
-		    buffer = inputBuffers[bufferIndex];				   
-		    buffer.clear();
-		    buffer.put(data);
-		    buffer.clear();
-		    mMediaCodec.queueInputBuffer(bufferIndex, 0, data.length, System.nanoTime() / 1000, 0);
-		}
+
         return 0;
     }
     @SuppressLint("WrongConstant")
@@ -113,11 +125,13 @@ public class HWConsumer extends Thread implements VideoConsumer {
         byte[]h264 = new byte[mWidth*mHeight*3/2];        
 
         do {
-            outputBufferIndex = mMediaCodec.dequeueOutputBuffer(bufferInfo, 30000);
+            outputBufferIndex = mMediaCodec.dequeueOutputBuffer(bufferInfo, 10000);
             if (outputBufferIndex == MediaCodec.INFO_TRY_AGAIN_LATER) {
                 // no output available yet
             } else if (outputBufferIndex == MediaCodec.INFO_OUTPUT_BUFFERS_CHANGED) {
                 // not expected for an encoder
+                outputBuffers = mMediaCodec.getOutputBuffers();
+
             } else if (outputBufferIndex == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
                /* EasyMuxer muxer = mMuxer;
                 if (muxer != null) {
@@ -130,7 +144,14 @@ public class HWConsumer extends Thread implements VideoConsumer {
             } else {
                 ByteBuffer outputBuffer;
 
-                outputBuffer = outputBuffers[outputBufferIndex];
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    outputBuffer = mMediaCodec.getOutputBuffer(outputBufferIndex);
+                } else {
+                    outputBuffer = outputBuffers[outputBufferIndex];
+                }
+                outputBuffer.position(bufferInfo.offset);
+                outputBuffer.limit(bufferInfo.offset + bufferInfo.size);
+
                 Muxer muxer = mMuxer;
                 if (muxer != null) {
                     muxer.pumpStream(outputBuffer, bufferInfo, true);
@@ -156,7 +177,7 @@ public class HWConsumer extends Thread implements VideoConsumer {
                 if (sync) {
                     System.arraycopy(mPpsSps, 0, h264, 0, mPpsSps.length);
                     outputBuffer.get(h264, mPpsSps.length, bufferInfo.size);
-                    mPusher.SendBuffer_org( h264,  mPpsSps.length + bufferInfo.size, (bufferInfo.presentationTimeUs / 1000),0, m_handle);
+                     mPusher.SendBuffer_org( h264,  mPpsSps.length + bufferInfo.size, (bufferInfo.presentationTimeUs / 1000),0, m_handle);
                      }else{
                     outputBuffer.get(h264, 0, bufferInfo.size);
                     mPusher.SendBuffer_org( h264,  bufferInfo.size,  (bufferInfo.presentationTimeUs / 1000), 0, m_handle);
@@ -213,7 +234,7 @@ Video bitrate 384 Kbps 2 Mbps 4 Mbps 10 Mbps
         
         EncoderDebugger debugger = EncoderDebugger.debug(mContext, mWidth, mHeight);
         mVideoConverter = debugger.getNV21Convertor();
-        mMediaCodec = MediaCodec.createByCodecName(debugger.getEncoderName());
+        mMediaCodec =  MediaCodec.createEncoderByType("Video/AVC");
         MediaFormat mediaFormat = MediaFormat.createVideoFormat("video/avc", mWidth, mHeight);
         mediaFormat.setInteger(MediaFormat.KEY_BIT_RATE, bitrate);
         mediaFormat.setInteger(MediaFormat.KEY_FRAME_RATE, framerate);

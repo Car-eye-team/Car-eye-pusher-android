@@ -48,6 +48,7 @@ public class MediaCodecManager {
 	public static int CAMERA_OPER_MODE = 1;
 	private EncoderDebugger debugger;
 	private AudioStream audioStream;
+
 	
 	public static MediaCodecManager getInstance() {
 		if (instance == null) {
@@ -124,6 +125,7 @@ public void onPreviewFrameUpload(byte[] data,int index,Camera camera){
      if(mVC[index]!= null)
      {
       	 mVC[index].onVideo(data, previewFormat);
+
      }else
      {   	
     	 camera.setPreviewCallback(null);    
