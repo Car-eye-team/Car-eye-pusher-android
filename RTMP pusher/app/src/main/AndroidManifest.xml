@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sh.RTMP_Pusher"
     android:versionCode="2"
-    android:versionName="2.2.4" >
+    android:versionName="2.3.4" >
 
     <uses-sdk
         android:minSdkVersion="16"

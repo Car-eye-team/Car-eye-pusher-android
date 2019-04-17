@@ -92,7 +92,7 @@ public class Constants {
 	public static boolean CAMERA_RECORD[] = {false,false,false,false};
 	public static final String Default_URL = "rtmp://www.car-eye.cn:10085/live/13510671870&channel=1";
 	//public static final String Key = "k15gTHU$)g+$6H+1t1U1{I71t1TiVHT1uj)1shSHTHSH7ir$THRirG)GVg7GtGSGt$+$THRH+$)3B";
-	public static final String Key = "y27mPloL-mpLMlp=O=o=}}N=O=P45lP=QOP=?=MlPlnlN4=LPll4=M-M5mNMOMnMOLpLPlllpL-16";
+	public static final String Key = "$00bZc<>zb0>^c0A,A<Aw~9A,AZBycZA.!ZA_A^cZcvc9BW>ZcxBWCzCyb9C,CvC,>0>Zcxc0>z64";
 	/**
 	 * 设置参数	 */
 	public static void setParam(Context context){
