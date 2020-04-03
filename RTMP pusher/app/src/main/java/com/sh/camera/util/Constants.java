@@ -1,4 +1,4 @@
-/*  car eye 车辆管理平台 
+﻿/*  car eye 车辆管理平台 
  * car-eye管理平台   www.car-eye.cn
  * car-eye开源网址:  https://github.com/Car-eye-team
  * Copyright
@@ -92,7 +92,7 @@ public class Constants {
 	public static boolean CAMERA_RECORD[] = {false,false,false,false};
 	public static final String Default_URL = "rtmp://www.car-eye.cn:10085/live/13510671870&channel=1";
 	//public static final String Key = "k15gTHU$)g+$6H+1t1U1{I71t1TiVHT1uj)1shSHTHSH7ir$THRirG)GVg7GtGSGt$+$THRH+$)3B";
-	public static final String Key = ")10h8IViuhtisItG+GVGrHRG+G8$UI8G)(uG6gsI8IqIR${i8I7${1u1UhR1+1q1+iti8I7Itiu63";
+	public static final String Key = "(20}5N?=p}-==N-LQL?L4mmLQL5MPN5LOpPL}l4N5NlNmMM=5NnMM4p4P}m4Q4l4Q=-=5NnN-=p1F";
 	/**
 	 * 设置参数	 */
 	public static void setParam(Context context){
