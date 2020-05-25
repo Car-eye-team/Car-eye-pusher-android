@@ -125,7 +125,7 @@ Car-eye-rtmp-pusher android版本下载地址：https://fir.im/wmdr
 car-eye-rtsp-pusher android版本下载地址：https://fir.im/ewu2     
 
 扫描二维码下载      
-![](https://github.com/MaiEmily/map/blob/master/public/image/20190528145810708.png)
+![](https://github.com/MaiEmily/map/raw/master/public/image/20190528145810708.png)
 
 
 # 联系我们     
