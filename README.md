@@ -139,7 +139,7 @@ car-eye 技术官方邮箱: support@car-eye.cn  
 car-eye技术交流QQ群: 590411159      
 
 ![Image text](https://github.com/Car-eye-team/Car-eye-server/raw/master/car-server/doc/QQ.jpg)  
-
+![Image text]图片找不到
 
 CopyRight©  car-eye 开源团队 2018
 
