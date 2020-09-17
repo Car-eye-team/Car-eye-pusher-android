@@ -122,24 +122,16 @@ Car-eye-rtmp-pusher android版本下载地址：https://fir.im/wmdr
 
 ![](https://github.com/Car-eye-team/Car-eye-pusher-android/raw/master/%E6%8E%A8%E6%B5%81/RTMP-PUSHER-%E4%BA%8C%E7%BB%B4%E7%A0%81.png)
 
-car-eye-rtsp-pusher android版本下载地址：https://fir.im/ewu2     
-
-扫描二维码下载      
-![](https://github.com/MaiEmily/map/raw/master/public/image/20190528145810708.png)
 
 
-# 联系我们     
+# 联系我们
 
-car-eye开源官方网址：www.car-eye.cn       
-
-car-eye 流媒体平台网址：www.liveoss.com    
-
-car-eye 技术官方邮箱: support@car-eye.cn    
-
-car-eye技术交流QQ群: 590411159      
-
-![Image text](https://github.com/Car-eye-team/Car-eye-server/raw/master/car-server/doc/QQ.jpg)  
-![Image text]图片找不到
-
-CopyRight©  car-eye 开源团队 2018
+car-eye 开源官方网址：www.car-eye.cn    
+car-eye 车辆管理平台网址：www.liveoss.com  
+car-eye GB28181管理平台网址 ：www.streaming-vip.com:10088     
+car-eye 技术官方邮箱: support@car-eye.cn  
+car-eye 车辆管理平台技术交流QQ群:590411159   
+car-eye 视频服务和管理平台QQ群：713522732     
+![](https://gitee.com/careye_open_source_platform_group/car-eye-jtt1078-media-server/raw/master/QQ/QQ.jpg)   
+CopyRight©  car-eye 开源团队 2018-2019
 
