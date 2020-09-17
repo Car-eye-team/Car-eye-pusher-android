@@ -34,7 +34,7 @@ Car-eye-pusher RTSP 和RTMP 各个版本通过摄像头采集数据，将数据�
 
 ## 操作界面
 
-![](https://github.com/Car-eye-team/Car-eye-pusher-android/blob/master/%E6%8E%A8%E6%B5%81/pusher.jpg)
+![](https://gitee.com/careye_open_source_platform_group/Car-eye-pusher-android/raw/master/%E6%8E%A8%E6%B5%81/pusher.jpg)
 
 图上的按钮功能依次为：拍照，录像，上传，打开历史记录，设置和返回
 
